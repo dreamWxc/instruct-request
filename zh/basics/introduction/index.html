@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>入门 | instruct request</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="指令请求器">
+    
+    <link rel="preload" href="/assets/css/0.styles.7cfabf05.css" as="style"><link rel="preload" href="/assets/js/app.351c32ee.js" as="script"><link rel="preload" href="/assets/js/2.0b262f75.js" as="script"><link rel="preload" href="/assets/js/12.a68fc717.js" as="script"><link rel="prefetch" href="/assets/js/10.7f766a87.js"><link rel="prefetch" href="/assets/js/11.d18ff8d3.js"><link rel="prefetch" href="/assets/js/13.5a1180ee.js"><link rel="prefetch" href="/assets/js/14.53acad9e.js"><link rel="prefetch" href="/assets/js/15.c6d2ed99.js"><link rel="prefetch" href="/assets/js/16.aaa31e2a.js"><link rel="prefetch" href="/assets/js/3.7551695b.js"><link rel="prefetch" href="/assets/js/4.f91c7c2e.js"><link rel="prefetch" href="/assets/js/5.5dd86ffc.js"><link rel="prefetch" href="/assets/js/6.68fc5c4c.js"><link rel="prefetch" href="/assets/js/7.f587d20f.js"><link rel="prefetch" href="/assets/js/8.8149d28c.js"><link rel="prefetch" href="/assets/js/9.d40751ff.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7cfabf05.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">instruct request</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/zh/" class="nav-link router-link-active">
+  教程
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="配置" class="dropdown-title"><span class="title">配置</span> <span class="arrow down"></span></button> <button type="button" aria-label="配置" class="mobile-dropdown-title"><span class="title">配置</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/api/default/" class="nav-link">
+  基本配置
+</a></li><li class="dropdown-item"><!----> <a href="/api/cache/" class="nav-link">
+  Cache配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="External" class="dropdown-title"><span class="title">External</span> <span class="arrow down"></span></button> <button type="button" aria-label="External" class="mobile-dropdown-title"><span class="title">External</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/zh/" class="nav-link router-link-active">
+  教程
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="配置" class="dropdown-title"><span class="title">配置</span> <span class="arrow down"></span></button> <button type="button" aria-label="配置" class="mobile-dropdown-title"><span class="title">配置</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/api/default/" class="nav-link">
+  基本配置
+</a></li><li class="dropdown-item"><!----> <a href="/api/cache/" class="nav-link">
+  Cache配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="External" class="dropdown-title"><span class="title">External</span> <span class="arrow down"></span></button> <button type="button" aria-label="External" class="mobile-dropdown-title"><span class="title">External</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/zh/" aria-current="page" class="sidebar-link">介绍</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>基础</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/basics/install/" class="sidebar-link">安装</a></li><li><a href="/zh/basics/introduction/" aria-current="page" class="active sidebar-link">入门</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/zh/basics/introduction/#引入模块" class="sidebar-link">引入模块</a></li><li class="sidebar-sub-header"><a href="/zh/basics/introduction/#使用插件" class="sidebar-link">使用插件</a></li><li class="sidebar-sub-header"><a href="/zh/basics/introduction/#自定义插件" class="sidebar-link">自定义插件</a></li><li class="sidebar-sub-header"><a href="/zh/basics/introduction/#使用插件扩展" class="sidebar-link">使用插件扩展</a></li></ul></li><li><a href="/zh/basics/request/" class="sidebar-link">配置</a></li><li><a href="/zh/basics/response/" class="sidebar-link">结果</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>插件</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="入门"><a href="#入门" class="header-anchor">#</a> 入门</h1> <h2 id="引入模块"><a href="#引入模块" class="header-anchor">#</a> 引入模块</h2> <h4 id="示例"><a href="#示例" class="header-anchor">#</a> 示例：</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> InstructRequestAxios <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+<span class="token comment">// 创建实例, @params option 参考 基础配置</span>
+<span class="token keyword">const</span> request <span class="token operator">=</span> InstructRequestAxios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token operator">...</span>option
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 使用请求</span>
+request<span class="token punctuation">.</span><span class="token function">$request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token operator">...</span>option
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="使用插件"><a href="#使用插件" class="header-anchor">#</a> 使用插件</h2> <h4 id="示例-2"><a href="#示例-2" class="header-anchor">#</a> 示例：</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> InstructRequestAxios<span class="token punctuation">,</span><span class="token punctuation">{</span> CachePlugin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+<span class="token comment">// 创建实例, @params option 参考 基础配置</span>
+<span class="token keyword">const</span> request <span class="token operator">=</span> InstructRequestAxios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token operator">...</span>option
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 注册插件</span>
+CachePlugin<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token operator">...</span>option<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">/* 
+   或者(唯一不同的即使提示的问题，插件本身的注册，可以提供良好的提示)
+   而request.$use 则不能，因为它是针对多插件的，无法具体得知应该提示什么
+*/</span>
+request<span class="token punctuation">.</span><span class="token function">$use</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token operator">...</span>option<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 使用请求</span>
+request<span class="token punctuation">.</span><span class="token function">$request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token operator">...</span>option
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="自定义插件"><a href="#自定义插件" class="header-anchor">#</a> 自定义插件</h2> <h4 id="示例-3"><a href="#示例-3" class="header-anchor">#</a> 示例：</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> InstructRequestAxios <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+<span class="token comment">// 创建实例, @params option 参考 基础配置</span>
+<span class="token keyword">const</span> request <span class="token operator">=</span> InstructRequestAxios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token operator">...</span>option
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+request<span class="token punctuation">.</span><span class="token function">$use</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token comment">// 被初始化加载时触发</span>
+    <span class="token function">install</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span>config</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        target<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token comment">// 扩展的名称 允许重名定义</span>
+            name<span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+            <span class="token comment">// 触发 @param request 本次请求的上下文环境</span>
+            <span class="token function-variable function">trigger</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">request</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token comment">// 什么样会触发，默认 has ，has代表指定配置才能被搜索到 skip 代表，有无配置皆可以搜索到</span>
+            triggerType<span class="token operator">:</span><span class="token string">'has'</span> <span class="token operator">|</span> <span class="token string">'skip'</span><span class="token punctuation">,</span>
+            <span class="token comment">// 被搜索到可不可以被触发</span>
+            <span class="token function-variable function">where</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token boolean">true</span> <span class="token operator">|</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token comment">// 生命周期，再生命周期的什么时候</span>
+            <span class="token comment">/*
+                'entry' 进入时，此时未进行生成 sign 令牌，一般多用于初始化参数，比如设置用户token ，修改请求头等
+                'front' 请求前 此时生成sign 令牌，后续再添加的参数将不会被统计到sign中，此处多用于开启一些请求前的操作
+                'post'  结束时 
+                'success' 成功时
+                'fail'  失败时
+            */</span>
+            type<span class="token operator">:</span><span class="token string">'front'</span><span class="token punctuation">,</span>
+            <span class="token comment">// 执行顺序 默认0 ,建议 最大 100 至 -100，模块自身插件，皆遵守于此 ，值越大执行越靠前，值越小执行越靠后</span>
+            zIndex<span class="token operator">:</span><span class="token number">1</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">register</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span>option</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> target<span class="token punctuation">.</span><span class="token function">$use</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// 更多配置参考自定义插件</span>
+    <span class="token operator">...</span>option
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="使用插件扩展"><a href="#使用插件扩展" class="header-anchor">#</a> 使用插件扩展</h2> <h4 id="示例-4"><a href="#示例-4" class="header-anchor">#</a> 示例:</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> InstructRequestAxios<span class="token punctuation">,</span><span class="token punctuation">{</span> CachePlugin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+<span class="token comment">// 创建实例, @params option 参考 基础配置</span>
+<span class="token keyword">const</span> request <span class="token operator">=</span> InstructRequestAxios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token operator">...</span>option
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 注册插件</span>
+CachePlugin<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token operator">...</span>option<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 获取扩展</span>
+<span class="token keyword">const</span> cache <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token string">'cache'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">[</span>option<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 可以使用 此插件的扩展功能(例如)</span>
+<span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token operator">...</span>option<span class="token punctuation">,</span>
+    cache<span class="token operator">:</span><span class="token punctuation">{</span>
+        groupId<span class="token operator">:</span><span class="token string">'now'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 执行删除缓存操作 更多请看关于插件文档</span>
+cache<span class="token punctuation">.</span><span class="token function">groupId</span><span class="token punctuation">(</span><span class="token string">'now'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/zh/basics/install/" class="prev">
+        安装
+      </a></span> <span class="next"><a href="/zh/basics/request/">
+        配置
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.351c32ee.js" defer></script><script src="/assets/js/2.0b262f75.js" defer></script><script src="/assets/js/12.a68fc717.js" defer></script>
+  </body>
+</html>
