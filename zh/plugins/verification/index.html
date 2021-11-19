@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>校验 | instruct request</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="指令请求器">
+    
+    <link rel="preload" href="/instruct-request-axios/assets/css/0.styles.e8679c17.css" as="style"><link rel="preload" href="/instruct-request-axios/assets/js/app.f61ffa1e.js" as="script"><link rel="preload" href="/instruct-request-axios/assets/js/2.88839758.js" as="script"><link rel="preload" href="/instruct-request-axios/assets/js/20.53dd9696.js" as="script"><link rel="prefetch" href="/instruct-request-axios/assets/js/10.656643fa.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/11.cc3514e3.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/12.c47bf6a7.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/13.ad419af1.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/14.014d4f2d.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/15.cf4ca8d4.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/16.07ef49cd.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/17.98e9f134.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/18.d9ff91ec.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/19.b909db1b.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/3.1df053ce.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/4.f91c7c2e.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/5.5dd86ffc.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/6.f2ab2ec8.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/7.f587d20f.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/8.d792acff.js"><link rel="prefetch" href="/instruct-request-axios/assets/js/9.d40751ff.js">
+    <link rel="stylesheet" href="/instruct-request-axios/assets/css/0.styles.e8679c17.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/instruct-request-axios/" class="home-link router-link-active"><!----> <span class="site-name">instruct request</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/instruct-request-axios/zh/" class="nav-link router-link-active">
+  教程
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="配置" class="dropdown-title"><span class="title">配置</span> <span class="arrow down"></span></button> <button type="button" aria-label="配置" class="mobile-dropdown-title"><span class="title">配置</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/instruct-request-axios/api/default/" class="nav-link">
+  基本配置
+</a></li><li class="dropdown-item"><!----> <a href="/instruct-request-axios/api/cache/" class="nav-link">
+  Cache配置
+</a></li><li class="dropdown-item"><!----> <a href="/instruct-request-axios/api/verification/" class="nav-link">
+  Verification配置
+</a></li><li class="dropdown-item"><!----> <a href="/instruct-request-axios/api/slice/" class="nav-link">
+  Slice配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="External" class="dropdown-title"><span class="title">External</span> <span class="arrow down"></span></button> <button type="button" aria-label="External" class="mobile-dropdown-title"><span class="title">External</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/instruct-request-axios/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/instruct-request-axios/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/instruct-request-axios/zh/" class="nav-link router-link-active">
+  教程
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="配置" class="dropdown-title"><span class="title">配置</span> <span class="arrow down"></span></button> <button type="button" aria-label="配置" class="mobile-dropdown-title"><span class="title">配置</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/instruct-request-axios/api/default/" class="nav-link">
+  基本配置
+</a></li><li class="dropdown-item"><!----> <a href="/instruct-request-axios/api/cache/" class="nav-link">
+  Cache配置
+</a></li><li class="dropdown-item"><!----> <a href="/instruct-request-axios/api/verification/" class="nav-link">
+  Verification配置
+</a></li><li class="dropdown-item"><!----> <a href="/instruct-request-axios/api/slice/" class="nav-link">
+  Slice配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="External" class="dropdown-title"><span class="title">External</span> <span class="arrow down"></span></button> <button type="button" aria-label="External" class="mobile-dropdown-title"><span class="title">External</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/instruct-request-axios/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/instruct-request-axios/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/instruct-request-axios/zh/" aria-current="page" class="sidebar-link">介绍</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>插件</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/instruct-request-axios/zh/plugins/cache/" class="sidebar-link">缓存(cache)</a></li><li><a href="/instruct-request-axios/zh/plugins/tip/" class="sidebar-link">提示(tip)</a></li><li><a href="/instruct-request-axios/zh/plugins/verification/" aria-current="page" class="active sidebar-link">校验(verification)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#可被提示的类型" class="sidebar-link">可被提示的类型</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#提供的格式化方法" class="sidebar-link">提供的格式化方法</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#校验模式" class="sidebar-link">校验模式</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#校验数据" class="sidebar-link">校验数据</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#exportkey" class="sidebar-link">exportKey</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#exportvalue" class="sidebar-link">exportValue</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#key" class="sidebar-link">key</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#value" class="sidebar-link">value</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#rules" class="sidebar-link">rules</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#beforeformat" class="sidebar-link">beforeFormat</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#format" class="sidebar-link">format</a></li></ul></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#使用" class="sidebar-link">使用</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#配置" class="sidebar-link">配置</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#mode" class="sidebar-link">mode</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#usekey" class="sidebar-link">useKey</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#tip" class="sidebar-link">tip</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#data" class="sidebar-link">data</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#item" class="sidebar-link">item</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#next" class="sidebar-link">next</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#cache" class="sidebar-link">cache</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#complete" class="sidebar-link">complete</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#merge" class="sidebar-link">merge</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#tipkey" class="sidebar-link">tipKey</a></li></ul></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#自定义规则-rule" class="sidebar-link">自定义规则(rule)</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#自定义格式化-format" class="sidebar-link">自定义格式化(format)</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#注册返回verification类" class="sidebar-link">注册返回Verification类</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#verification类" class="sidebar-link">Verification类</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#createddata" class="sidebar-link">createdData</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#createditem" class="sidebar-link">createdItem</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#addrules" class="sidebar-link">addRules</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#addformats" class="sidebar-link">addFormats</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#verificationtriggertarget" class="sidebar-link">verificationTriggerTarget</a></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#verification" class="sidebar-link">verification</a></li></ul></li><li class="sidebar-sub-header"><a href="/instruct-request-axios/zh/plugins/verification/#外界扩展" class="sidebar-link">外界扩展</a></li></ul></li><li><a href="/instruct-request-axios/zh/plugins/slice/" class="sidebar-link">分片(slice)</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="校验"><a href="#校验" class="header-anchor">#</a> 校验</h1> <p>针对一些数据进行校验，通过则继续执行，不通过则停止执行</p> <h2 id="可被提示的类型"><a href="#可被提示的类型" class="header-anchor">#</a> 可被提示的类型</h2> <ul><li><code>info</code> 普通提示</li> <li><code>error</code> 错误提示</li> <li><code>success</code> 成功提示</li> <li><code>warning</code> 警告提示</li></ul> <h2 id="提供的格式化方法"><a href="#提供的格式化方法" class="header-anchor">#</a> 提供的格式化方法</h2> <ul><li><code>join</code> 数组join连接 可被配置 <code>string</code></li> <li><code>trim</code> 移除左右空格</li></ul> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        beforeFormat<span class="token operator">:</span><span class="token string">'join'</span><span class="token punctuation">,</span>
+        format<span class="token operator">:</span><span class="token punctuation">{</span>
+            trigger<span class="token operator">:</span><span class="token string">'join'</span><span class="token punctuation">,</span>
+            option<span class="token operator">:</span><span class="token string">'-'</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+        beforeFormat<span class="token operator">:</span><span class="token string">'join'</span><span class="token punctuation">,</span>
+        format<span class="token operator">:</span><span class="token punctuation">{</span>
+            trigger<span class="token operator">:</span><span class="token string">'join'</span><span class="token punctuation">,</span>
+            option<span class="token operator">:</span><span class="token number">1</span> <span class="token comment">// error</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><h2 id="校验模式"><a href="#校验模式" class="header-anchor">#</a> 校验模式</h2> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token punctuation">{</span>
+    <span class="token comment">// 是否为空 不限于`string` 针对`string`不校验空格</span>
+    empty<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 校验手机号 仅校验1开头</span>
+    mobile<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 校验身份证号</span>
+    idcard<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 校验邮箱</span>
+    email<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 字符串，并校验空格 仅限`string`</span>
+    trim<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 是否为空 不限于`string` 针对`string`校验空格</span>
+    emptyTrim<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 长度对比</span>
+    length<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token comment">// 对比值，必须等于 此  value</span>
+        value<span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">,</span>
+        <span class="token comment">// 提示文本</span>
+        tip<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// 对等配置 注意 eq如果置顶 index ｜ key  如果此模式未被执行，将优先跳转 需要被对比的模式，校验完成后，再进行 eq对比</span>
+    eq<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token comment">// 提示文本</span>
+        tip<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+        <span class="token comment">// 比对值 可以不写 通过  key ｜ index 来获取相应的对比</span>
+        value<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">any</span><span class="token punctuation">,</span>
+        <span class="token comment">// 或者比对当前value中的任意值</span>
+        key<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+        <span class="token comment">// index</span>
+        index<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">,</span>
+        <span class="token comment">// 是否为绝对相等 默认 true</span>
+        absolutely<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">boolean</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// 或其他自定义 校验</span>
+    <span class="token punctuation">[</span>propName<span class="token punctuation">]</span><span class="token operator">:</span><span class="token builtin">any</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="校验数据"><a href="#校验数据" class="header-anchor">#</a> 校验数据</h2> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token punctuation">{</span>
+    <span class="token comment">// 导出key,不存在此exportKey 默认去取用 key</span>
+    exportKey<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 默认key</span>
+    key<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 默认使用值</span>
+    value<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">any</span><span class="token punctuation">,</span>
+    <span class="token comment">// 如果存在此 将会采用 exportValue</span>
+    exportValue<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">any</span><span class="token punctuation">,</span>
+    <span class="token comment">// 校验规则 不提供则不进行校验直接取值</span>
+    rules<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span> <span class="token operator">|</span> VerificationRulesArg<span class="token punctuation">,</span> 
+    <span class="token comment">// 校验后 格式化输出 允许同时格式化其他模块，但不建议这么做</span>
+    format<span class="token operator">?</span><span class="token operator">:</span>VerificationFormat <span class="token operator">|</span> VerificationPresetFormat <span class="token operator">|</span> VerificationPresetFormatOption<span class="token operator">&lt;</span>VerificationPresetFormat<span class="token operator">&gt;</span><span class="token punctuation">,</span>
+    <span class="token comment">// 校验前</span>
+    beforeFormat<span class="token operator">?</span><span class="token operator">:</span>VerificationFormat <span class="token operator">|</span> VerificationPresetFormat <span class="token operator">|</span> VerificationPresetFormatOption<span class="token operator">&lt;</span>VerificationPresetFormat<span class="token operator">&gt;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="exportkey"><a href="#exportkey" class="header-anchor">#</a> <code>exportKey</code></h3> <p>导出索引名称,如果不存在默认使用<code>key</code></p> <h3 id="exportvalue"><a href="#exportvalue" class="header-anchor">#</a> <code>exportValue</code></h3> <p>用于校验的值 如果不存在默认使用<code>value</code></p> <h3 id="key"><a href="#key" class="header-anchor">#</a> <code>key</code></h3> <p>导出索引名称</p> <h3 id="value"><a href="#value" class="header-anchor">#</a> <code>value</code></h3> <p>用于校验的值</p> <h3 id="rules"><a href="#rules" class="header-anchor">#</a> <code>rules</code></h3> <p>校验规则 不提供则不进行校验</p> <h4 id="参数-string-object"><a href="#参数-string-object" class="header-anchor">#</a> 参数: <code>String</code> | <code>Object</code></h4> <p><code>String</code> 提示的内容 默认使用<code>empty</code>模式
+<br> <code>Object</code> <a href="/instruct-request-axios/zh/plugins/verification/#校验模式">查看详情</a></p> <h3 id="beforeformat"><a href="#beforeformat" class="header-anchor">#</a> <code>beforeFormat</code></h3> <p>校验前 针对文本的格式化输出</p> <h4 id="参数-string-object-function"><a href="#参数-string-object-function" class="header-anchor">#</a> 参数: <code>String</code> | <code>Object</code> | <code>Function</code></h4> <p><code>String</code> 使用的格式化方式，可以是自定义的名称，也可以是插件提供的
+<br> <code>Object</code> 使用两个字段 <code>trigger</code>,<code>option</code> 分别为 使用的格式化方式 和 传入格式化的参数配置
+<br> <code>Function</code> 自定义处理 分别传入 <code>当前值</code>,<code>当前key</code>,<code>当前对象</code>,<code>当前收集的导出数据</code></p> <h3 id="format"><a href="#format" class="header-anchor">#</a> <code>format</code></h3> <p>校验前 针对文本的格式化输出</p> <h4 id="参数-string-object-function-2"><a href="#参数-string-object-function-2" class="header-anchor">#</a> 参数: <code>String</code> | <code>Object</code> | <code>Function</code></h4> <p><code>String</code> 使用的格式化方式，可以是自定义的名称，也可以是插件提供的
+<br> <code>Object</code> 使用两个字段 <code>trigger</code>,<code>option</code> 分别为 使用的格式化方式 和 传入格式化的参数配置
+<br> <code>Function</code> 自定义处理 分别传入 <code>当前值</code>,<code>当前key</code>,<code>当前对象</code>,<code>当前收集的导出数据</code></p> <h2 id="使用"><a href="#使用" class="header-anchor">#</a> 使用</h2> <h4 id="示例"><a href="#示例" class="header-anchor">#</a> 示例:</h4> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> instructRequest<span class="token punctuation">,</span><span class="token punctuation">{</span>VerificationPlugin<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./index'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> request <span class="token operator">=</span> instructRequest<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    baseURL<span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+    message<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token function-variable function">info</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">success</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+VerificationPlugin<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token punctuation">{</span>
+    <span class="token comment">// 自定义校验规则</span>
+    rules<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token function-variable function">name</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> option<span class="token punctuation">.</span>value <span class="token operator">===</span> <span class="token string">'Fighter'</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// 自定义格式化工具</span>
+    formats<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token function-variable function">name</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span>option<span class="token operator">=</span><span class="token string">':'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">'username'</span><span class="token operator">+</span>option<span class="token operator">+</span>value<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+request<span class="token punctuation">.</span><span class="token function">$request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    data<span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            key<span class="token operator">:</span><span class="token string">'user'</span><span class="token punctuation">,</span>
+            value<span class="token operator">:</span><span class="token string">'Figter'</span><span class="token punctuation">,</span>
+            rules<span class="token operator">:</span><span class="token punctuation">{</span>
+                <span class="token string">'emptyTirm'</span><span class="token operator">:</span><span class="token string">'请输入名称'</span><span class="token punctuation">,</span>
+                <span class="token string">'name'</span><span class="token operator">:</span><span class="token string">'情输入正确的名称'</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            format<span class="token operator">:</span><span class="token punctuation">{</span>
+                trigger<span class="token operator">:</span><span class="token string">'name'</span><span class="token punctuation">,</span>
+                option<span class="token operator">:</span><span class="token string">'-&gt;&gt;&gt;'</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            key<span class="token operator">:</span><span class="token string">'password'</span><span class="token punctuation">,</span>
+            value<span class="token operator">:</span><span class="token string">'123456'</span><span class="token punctuation">,</span>
+            plachoder<span class="token operator">:</span><span class="token string">'请输入密码'</span><span class="token punctuation">,</span>
+            rules<span class="token operator">:</span><span class="token punctuation">{</span>
+                <span class="token string">'emptyTirm'</span><span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment">// 如果为空默认查找 tipKey 定义的默认key</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            key<span class="token operator">:</span><span class="token string">'confirmPassword'</span><span class="token punctuation">,</span>
+            value<span class="token operator">:</span><span class="token string">'12345'</span><span class="token punctuation">,</span>
+            plachoder<span class="token operator">:</span><span class="token string">'请输入确认密码'</span><span class="token punctuation">,</span>
+            rules<span class="token operator">:</span><span class="token punctuation">{</span>
+                <span class="token string">'emptyTirm'</span><span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+                <span class="token string">'eq'</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                    <span class="token comment">// 此 key 或者 index 都可以</span>
+                    key<span class="token operator">:</span><span class="token string">'password'</span><span class="token punctuation">,</span>
+                    index<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                    tip<span class="token operator">:</span><span class="token string">'两次密码不一致'</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            key<span class="token operator">:</span><span class="token string">'code'</span><span class="token punctuation">,</span>
+            value<span class="token operator">:</span><span class="token string">'123'</span><span class="token punctuation">,</span>
+            plachoder<span class="token operator">:</span><span class="token string">'请输入验证码'</span><span class="token punctuation">,</span>
+            rules<span class="token operator">:</span><span class="token punctuation">{</span>
+                <span class="token string">'emptyTirm'</span><span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+                <span class="token string">'eq'</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                    value<span class="token operator">:</span><span class="token string">'123456'</span><span class="token punctuation">,</span>
+                    tip<span class="token operator">:</span><span class="token string">'验证码不正确'</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    verification<span class="token operator">:</span><span class="token punctuation">{</span>
+        useKey<span class="token operator">:</span><span class="token string">'data'</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">cache</span><span class="token operator">:</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+            <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'cache'</span><span class="token punctuation">,</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">complete</span><span class="token operator">:</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+            <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        merge<span class="token operator">:</span><span class="token string">'data'</span><span class="token punctuation">,</span>
+        tipKey<span class="token operator">:</span><span class="token string">'plachoder'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="配置"><a href="#配置" class="header-anchor">#</a> 配置</h2> <h4 id="介绍"><a href="#介绍" class="header-anchor">#</a> 介绍:</h4> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token punctuation">{</span>
+    <span class="token comment">// 执行模式 如果存在next 将失效</span>
+    mode<span class="token operator">?</span><span class="token operator">:</span> <span class="token string">'default'</span> <span class="token operator">|</span> <span class="token string">'end'</span><span class="token punctuation">,</span>
+    <span class="token comment">// 直接使用 已有字段</span>
+    useKey<span class="token operator">?</span><span class="token operator">:</span>VerificationUseKey<span class="token punctuation">,</span>
+    <span class="token comment">// 是否提示 </span>
+    tip<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token operator">|</span> RequestMessageOption <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>result<span class="token operator">:</span>VerificationResult<span class="token punctuation">)</span><span class="token operator">=&gt;</span> RequestMessageOption <span class="token operator">|</span> <span class="token builtin">boolean</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">// 校验数据</span>
+    data<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">Array</span><span class="token operator">&lt;</span><span class="token constant">D</span><span class="token operator">&gt;</span> <span class="token operator">|</span> Record<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token constant">D</span><span class="token operator">&gt;</span><span class="token punctuation">,</span>
+    <span class="token comment">// 校验数据单条</span>
+    item<span class="token operator">?</span><span class="token operator">:</span> <span class="token constant">D</span><span class="token punctuation">,</span>
+    <span class="token comment">// 监控执行，根据返回 boolean 来决定是否继续向下执行</span>
+    next<span class="token operator">?</span><span class="token operator">:</span><span class="token punctuation">(</span>result<span class="token operator">:</span>VerificationResult<span class="token punctuation">,</span>option<span class="token operator">:</span>VerificationItem<span class="token punctuation">,</span>data<span class="token operator">:</span>Record<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">any</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token builtin">boolean</span> <span class="token operator">|</span> <span class="token keyword">void</span>
+    <span class="token comment">// 终点 发生校验错误</span>
+    cache<span class="token operator">?</span><span class="token operator">:</span><span class="token punctuation">(</span>result<span class="token operator">:</span><span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token keyword">void</span>
+    <span class="token comment">// 结束函数，如果校验完成，将会自动去合并 data</span>
+    complete<span class="token operator">?</span><span class="token operator">:</span><span class="token punctuation">(</span>result<span class="token operator">:</span><span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token constant">T</span> <span class="token operator">|</span> <span class="token keyword">void</span><span class="token punctuation">,</span>
+    <span class="token comment">// 合并字段 去合并 为Array 则全部都去合并 如果为function 根据返回的字段 和值 去 合并</span>
+    merge<span class="token operator">?</span><span class="token operator">:</span><span class="token keyword">keyof</span> AxiosRequestConfig <span class="token operator">|</span> <span class="token builtin">Array</span><span class="token operator">&lt;</span><span class="token keyword">keyof</span> AxiosRequestConfig<span class="token operator">&gt;</span> <span class="token operator">|</span> VerificationMerge<span class="token punctuation">,</span>
+    <span class="token comment">// 如果校验提示结果为空 则默认去查找此字段作为提示 默认使用 placeholder</span>
+    tipKey<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="mode"><a href="#mode" class="header-anchor">#</a> <code>mode</code></h3> <p>校验遇错模式</p> <h4 id="参数-default-end"><a href="#参数-default-end" class="header-anchor">#</a> 参数: <code>default</code> | <code>end</code></h4> <p><code>default</code> 找到错误 ，自动退出
+<br> <code>end</code> 找到错误，继续执行，执行到达终点</p> <br> <h3 id="usekey"><a href="#usekey" class="header-anchor">#</a> <code>useKey</code></h3> <p>以请求中的哪个字段作为校验数据</p> <h4 id="参数-string"><a href="#参数-string" class="header-anchor">#</a> 参数: <code>String</code></h4> <p><code>String</code> 作为校验数据的key</p> <br> <h3 id="tip"><a href="#tip" class="header-anchor">#</a> <code>tip</code></h3> <p>是否提示错误消息</p> <h4 id="参数-boolean-string-function"><a href="#参数-boolean-string-function" class="header-anchor">#</a> 参数: <code>Boolean</code> | <code>String</code> | <code>Function</code></h4> <p><code>Boolean</code> 是否提示 默认使用 <code>info</code> <br> <code>String</code> 可使用的提示类型<a href="/instruct-request-axios/zh/plugins/verification/#可被提示的类型">查看详情</a> <br> <code>Function</code> 返回提示类型 <code>Boolean</code> | <code>String</code> 传入参数 <code>校验结果集</code></p> <br> <h3 id="data"><a href="#data" class="header-anchor">#</a> <code>data</code></h3> <p>校验数据，存在 <code>useKey</code> 优先使用 <code>useKey</code></p> <h4 id="参数-array-object"><a href="#参数-array-object" class="header-anchor">#</a> 参数: <code>Array</code> | <code>Object</code></h4> <p><code>Array</code> 校验数据 <a href="/instruct-request-axios/zh/plugins/verification/#校验数据">查看详情</a> <br> <code>Object</code> 校验数据 如果不存在 <code>key</code> 或 <code>exportKey</code> 则使用 对象的 key 作为导出 <a href="/instruct-request-axios/zh/plugins/verification/#校验数据">查看详情</a></p> <br> <h3 id="item"><a href="#item" class="header-anchor">#</a> <code>item</code></h3> <p>单条数据校验</p> <h4 id="参数-object"><a href="#参数-object" class="header-anchor">#</a> 参数: <code>Object</code></h4> <p><code>Object</code> 校验单条数据 <a href="/instruct-request-axios/zh/plugins/verification/#校验数据">查看详情</a></p> <br> <h3 id="next"><a href="#next" class="header-anchor">#</a> <code>next</code></h3> <p>是否继续向下执行</p> <h4 id="参数-function"><a href="#参数-function" class="header-anchor">#</a> 参数: <code>Function</code></h4> <p><code>Function</code> 监控执行，根据返回 <code>boolean</code> 来决定是否继续向下执行 提供参数 <code>校验结果集</code>,<code>当前校验数据对象</code>,<code>收集的数据</code></p> <br> <h3 id="cache"><a href="#cache" class="header-anchor">#</a> <code>cache</code></h3> <p>发生校验错误导致结束</p> <h4 id="参数-function-2"><a href="#参数-function-2" class="header-anchor">#</a> 参数: <code>Function</code></h4> <p><code>Function</code> 发生校验错误导致结束 提供参数 <code>校验结果集</code></p> <br> <h3 id="complete"><a href="#complete" class="header-anchor">#</a> <code>complete</code></h3> <p>校验完成触发，操作完此函数后将会去执行 <code>merge</code> 合并结果</p> <h4 id="参数-function-3"><a href="#参数-function-3" class="header-anchor">#</a> 参数: <code>Function</code></h4> <p><code>Function</code> 校验完成触发 <code>校验结果集</code>, 如果返回新的对象，将会被当作 最新的<code>收集数据</code>进行 <code>merge</code> 合并结果</p> <br> <h3 id="merge"><a href="#merge" class="header-anchor">#</a> <code>merge</code></h3> <p>合并结果集</p> <h4 id="参数-string-array-string-function-object"><a href="#参数-string-array-string-function-object" class="header-anchor">#</a> 参数: <code>String</code> | <code>Array&lt;String&gt;</code> | <code>Function&lt;Object&gt;</code></h4> <p><code>String</code> 合并的字段
+<br> <code>Array&lt;String&gt;</code> 合并多个字段
+<br> <code>Function</code> 返回合并字段 和 合并结果</p> <br> <h3 id="tipkey"><a href="#tipkey" class="header-anchor">#</a> <code>tipKey</code></h3> <p>如果校验提示结果为空 则默认去查找此字段作为提示</p> <h4 id="参数-string-2"><a href="#参数-string-2" class="header-anchor">#</a> 参数: <code>String</code></h4> <p><code>String</code> 如果校验提示结果为空 则默认去查找此字段作为提示 默认使用 <code>placeholder</code></p> <h2 id="自定义规则-rule"><a href="#自定义规则-rule" class="header-anchor">#</a> 自定义规则(rule)</h2> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> instructRequest<span class="token punctuation">,</span><span class="token punctuation">{</span>VerificationPlugin<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> request <span class="token operator">=</span> instructRequest<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    baseURL<span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+    message<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token function-variable function">info</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">success</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+VerificationPlugin<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token punctuation">{</span>
+    <span class="token comment">// 自定义校验规则</span>
+    rules<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token function-variable function">name</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> option<span class="token punctuation">.</span>value <span class="token operator">===</span> <span class="token string">'Fighter'</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>自定义校验函数参数说明
+<br>
+第一个参数 <code>Object</code></p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token punctuation">{</span>
+    <span class="token comment">//校验配置</span>
+    option<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">,</span>
+    <span class="token comment">//当下校验的数据</span>
+    item<span class="token operator">:</span>VerificationItem<span class="token punctuation">,</span>
+    <span class="token comment">//上下文环境</span>
+    arg<span class="token operator">:</span>VerificationTriggerArg<span class="token punctuation">,</span>
+    <span class="token comment">//使用的key</span>
+    key<span class="token operator">:</span><span class="token builtin">string</span> <span class="token operator">|</span> <span class="token builtin">number</span><span class="token punctuation">,</span>
+    <span class="token comment">//当下的值</span>
+    value<span class="token operator">:</span><span class="token builtin">any</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>第二个参数 <code>Verification</code> 校验类</p> <h2 id="自定义格式化-format"><a href="#自定义格式化-format" class="header-anchor">#</a> 自定义格式化(format)</h2> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> instructRequest<span class="token punctuation">,</span><span class="token punctuation">{</span>VerificationPlugin<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> request <span class="token operator">=</span> instructRequest<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    baseURL<span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+    message<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token function-variable function">info</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">success</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+VerificationPlugin<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token punctuation">{</span>
+    <span class="token comment">// 自定义校验规则</span>
+    formats<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token function-variable function">name</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span>option<span class="token operator">=</span><span class="token string">':'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">'username'</span><span class="token operator">+</span>option<span class="token operator">+</span>value<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>自定义格式化函数参数说明
+<br>
+第一个参数 <code>any</code> 当前使用的value
+<br>
+第二个参数 <code>Option</code> 自定义的配置</p> <h2 id="注册返回verification类"><a href="#注册返回verification类" class="header-anchor">#</a> 注册返回Verification类</h2> <p><code>VerificationPlugin</code>调用<code>register</code>时将会返回 <code>Verification</code> 同时 提供 <code>createdData</code> 和 <code>createdItem</code> 来辅助自定义提示，仅对<code>typescript</code> 有效</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> instructRequest<span class="token punctuation">,</span><span class="token punctuation">{</span>VerificationPlugin<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> request <span class="token operator">=</span> instructRequest<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    baseURL<span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+    message<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token function-variable function">info</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">success</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> verification <span class="token operator">=</span> VerificationPlugin<span class="token punctuation">.</span><span class="token generic-function"><span class="token function">register</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token punctuation">{</span>
+    name<span class="token operator">:</span><span class="token builtin">string</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+    name<span class="token operator">:</span><span class="token builtin">string</span>
+<span class="token punctuation">}</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>request<span class="token punctuation">,</span><span class="token punctuation">{</span>
+    <span class="token comment">// 自定义校验规则</span>
+    rules<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token function-variable function">name</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> option<span class="token punctuation">.</span>value <span class="token operator">===</span> <span class="token string">'Fighter'</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 自定义校验规则</span>
+    formats<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token function-variable function">name</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span>option<span class="token operator">=</span><span class="token string">':'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">'username'</span><span class="token operator">+</span>option<span class="token operator">+</span>value<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+verification<span class="token punctuation">.</span><span class="token function">createData</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        format<span class="token operator">:</span><span class="token string">'name'</span><span class="token punctuation">,</span>
+        rules<span class="token operator">:</span><span class="token punctuation">{</span>
+            name<span class="token operator">:</span><span class="token string">'1'</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+        format<span class="token operator">:</span><span class="token string">'name'</span><span class="token punctuation">,</span>
+        rules<span class="token operator">:</span><span class="token punctuation">{</span>
+            name<span class="token operator">:</span><span class="token number">1</span> <span class="token comment">// error: value must is string</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="verification类"><a href="#verification类" class="header-anchor">#</a> Verification类</h2> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token punctuation">{</span>
+    <span class="token comment">// 创建 data 除了增加提示，无任何其他作用</span>
+    <span class="token function">createdData</span><span class="token punctuation">(</span>data<span class="token operator">:</span><span class="token builtin">Array</span><span class="token operator">&lt;</span>VerificationItemTip<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token punctuation">,</span><span class="token constant">D</span><span class="token operator">&gt;&gt;</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token builtin">Array</span><span class="token operator">&lt;</span>VerificationItem<span class="token operator">&gt;</span>
+    <span class="token comment">// 创建 item 除了增加提示，无任何其他作用</span>
+    <span class="token function">createdItem</span><span class="token punctuation">(</span>data<span class="token operator">:</span>VerificationItemTip<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token punctuation">,</span><span class="token constant">D</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">:</span>VerificationItem
+    <span class="token comment">// 增加规则</span>
+    <span class="token generic-function"><span class="token function">addRules</span><span class="token generic class-name"><span class="token operator">&lt;</span>chilT<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>rules<span class="token operator">:</span><span class="token punctuation">{</span><span class="token punctuation">[</span> key <span class="token keyword">in</span> <span class="token keyword">keyof</span> chilT<span class="token punctuation">]</span><span class="token operator">:</span>VerificationTriggerFunction<span class="token operator">&lt;</span>chilT<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token operator">&gt;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">:</span>Verification<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token punctuation">,</span><span class="token constant">D</span><span class="token operator">&gt;</span>
+    <span class="token comment">// 添加格式处理</span>
+    <span class="token generic-function"><span class="token function">addFormats</span><span class="token generic class-name"><span class="token operator">&lt;</span>chilD<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>formats<span class="token operator">:</span><span class="token punctuation">{</span> <span class="token punctuation">[</span>key <span class="token keyword">in</span> <span class="token keyword">keyof</span> chilD<span class="token punctuation">]</span><span class="token operator">:</span>VerificationBuiltFormat<span class="token operator">&lt;</span>chilD<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token operator">&gt;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">:</span>Verification<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token punctuation">,</span><span class="token constant">D</span><span class="token operator">&gt;</span>
+    <span class="token comment">// 获取某一个的校验结果</span>
+    <span class="token generic-function"><span class="token function">verificationTriggerTarget</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token keyword">extends</span> <span class="token keyword">keyof</span> VerificationMode <span class="token operator">=</span> <span class="token string">'default'</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>supperKey<span class="token operator">:</span><span class="token builtin">number</span> <span class="token operator">|</span><span class="token builtin">string</span><span class="token punctuation">,</span>key<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>index<span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">,</span>option<span class="token operator">:</span>VerificationTriggerArg<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">:</span>VerificationResult
+    <span class="token comment">// 校验</span>
+    <span class="token generic-function"><span class="token function">verification</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token keyword">extends</span> <span class="token keyword">keyof</span> VerificationMode <span class="token operator">=</span> <span class="token string">'default'</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>option<span class="token operator">:</span>VerificationOption<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">:</span>VerificationMode<span class="token punctuation">[</span><span class="token constant">T</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="createddata"><a href="#createddata" class="header-anchor">#</a> <code>createdData</code></h3> <p>创建 data 除了增加提示，无任何其他作用</p> <h3 id="createditem"><a href="#createditem" class="header-anchor">#</a> <code>createdItem</code></h3> <p>创建 单条数据 除了增加提示，无任何其他作用</p> <h3 id="addrules"><a href="#addrules" class="header-anchor">#</a> <code>addRules</code></h3> <p>增加规则处理</p> <h3 id="addformats"><a href="#addformats" class="header-anchor">#</a> <code>addFormats</code></h3> <p>添加格式处理</p> <h3 id="verificationtriggertarget"><a href="#verificationtriggertarget" class="header-anchor">#</a> <code>verificationTriggerTarget</code></h3> <p>获取某一个的校验结果,常规情况无法用到，做规则处理时，如果需要获取到<code>某一个校验</code> 可以使用,<code>eq</code> 便是使用此 完成的</p> <h3 id="verification"><a href="#verification" class="header-anchor">#</a> <code>verification</code></h3> <p>校验数据，参数和 <code>verification</code>的配置一样 <a href="/instruct-request-axios/zh/plugins/verification/#配置">查看详情</a></p> <h2 id="外界扩展"><a href="#外界扩展" class="header-anchor">#</a> 外界扩展</h2> <p><code>Verification</code> 同样提供了针对外界的扩展模块，返回一个新的 <code>Verification</code> 类</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> instructRequest<span class="token punctuation">,</span><span class="token punctuation">{</span>VerificationPlugin<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> request <span class="token operator">=</span> instructRequest<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    baseURL<span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+    message<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token function-variable function">info</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">success</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+VerificationPlugin<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+request<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token string">'verification'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/instruct-request-axios/zh/plugins/tip/" class="prev">
+        提示(tip)
+      </a></span> <span class="next"><a href="/instruct-request-axios/zh/plugins/slice/">
+        分片(slice)
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/instruct-request-axios/assets/js/app.f61ffa1e.js" defer></script><script src="/instruct-request-axios/assets/js/2.88839758.js" defer></script><script src="/instruct-request-axios/assets/js/20.53dd9696.js" defer></script>
+  </body>
+</html>
