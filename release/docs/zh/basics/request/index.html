@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>配置 | instruct request</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="指令请求器">
+    
+    <link rel="preload" href="/assets/css/0.styles.7cfabf05.css" as="style"><link rel="preload" href="/assets/js/app.351c32ee.js" as="script"><link rel="preload" href="/assets/js/2.0b262f75.js" as="script"><link rel="preload" href="/assets/js/13.5a1180ee.js" as="script"><link rel="prefetch" href="/assets/js/10.7f766a87.js"><link rel="prefetch" href="/assets/js/11.d18ff8d3.js"><link rel="prefetch" href="/assets/js/12.a68fc717.js"><link rel="prefetch" href="/assets/js/14.53acad9e.js"><link rel="prefetch" href="/assets/js/15.c6d2ed99.js"><link rel="prefetch" href="/assets/js/16.aaa31e2a.js"><link rel="prefetch" href="/assets/js/3.7551695b.js"><link rel="prefetch" href="/assets/js/4.f91c7c2e.js"><link rel="prefetch" href="/assets/js/5.5dd86ffc.js"><link rel="prefetch" href="/assets/js/6.68fc5c4c.js"><link rel="prefetch" href="/assets/js/7.f587d20f.js"><link rel="prefetch" href="/assets/js/8.8149d28c.js"><link rel="prefetch" href="/assets/js/9.d40751ff.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7cfabf05.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">instruct request</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/zh/" class="nav-link router-link-active">
+  教程
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="配置" class="dropdown-title"><span class="title">配置</span> <span class="arrow down"></span></button> <button type="button" aria-label="配置" class="mobile-dropdown-title"><span class="title">配置</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/api/default/" class="nav-link">
+  基本配置
+</a></li><li class="dropdown-item"><!----> <a href="/api/cache/" class="nav-link">
+  Cache配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="External" class="dropdown-title"><span class="title">External</span> <span class="arrow down"></span></button> <button type="button" aria-label="External" class="mobile-dropdown-title"><span class="title">External</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/zh/" class="nav-link router-link-active">
+  教程
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="配置" class="dropdown-title"><span class="title">配置</span> <span class="arrow down"></span></button> <button type="button" aria-label="配置" class="mobile-dropdown-title"><span class="title">配置</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/api/default/" class="nav-link">
+  基本配置
+</a></li><li class="dropdown-item"><!----> <a href="/api/cache/" class="nav-link">
+  Cache配置
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="External" class="dropdown-title"><span class="title">External</span> <span class="arrow down"></span></button> <button type="button" aria-label="External" class="mobile-dropdown-title"><span class="title">External</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/zh/" aria-current="page" class="sidebar-link">介绍</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>基础</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/basics/install/" class="sidebar-link">安装</a></li><li><a href="/zh/basics/introduction/" class="sidebar-link">入门</a></li><li><a href="/zh/basics/request/" aria-current="page" class="active sidebar-link">配置</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/zh/basics/request/#axios" class="sidebar-link">axios</a></li><li class="sidebar-sub-header"><a href="/zh/basics/request/#请求状态码" class="sidebar-link">请求状态码</a></li><li class="sidebar-sub-header"><a href="/zh/basics/request/#数据是否展开" class="sidebar-link">数据是否展开</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/zh/basics/request/#配置字段-rest-默认为true" class="sidebar-link">配置字段 rest 默认为true</a></li></ul></li><li class="sidebar-sub-header"><a href="/zh/basics/request/#弹窗配置" class="sidebar-link">弹窗配置</a></li></ul></li><li><a href="/zh/basics/response/" class="sidebar-link">结果</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>插件</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="配置"><a href="#配置" class="header-anchor">#</a> 配置</h1> <h2 id="axios"><a href="#axios" class="header-anchor">#</a> axios</h2> <p>使用的axios 将会被初始导出</p> <h4 id="使用说明"><a href="#使用说明" class="header-anchor">#</a> 使用说明:</h4> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>axios<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="请求状态码"><a href="#请求状态码" class="header-anchor">#</a> 请求状态码</h2> <div class="custom-block tip"><p class="custom-block-title">提示</p> <p>配置状态码用于帮助请求器来断定是否为成功，部分插件只有成功时才会执行一些操作</p></div> <h4 id="全局配置"><a href="#全局配置" class="header-anchor">#</a> 全局配置:</h4> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> InstructRequestAxios <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+<span class="token comment">// 创建实例</span>
+<span class="token keyword">const</span> request <span class="token operator">=</span> InstructRequestAxios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    responseCode<span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">200</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    codeKey<span class="token operator">:</span><span class="token string">'code'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 如此便会认为 responseCode.includes(response.data.code) 为成功的请求</span>
+</code></pre></div><h4 id="如果上方需求无法满足您的需求可以使用自定义"><a href="#如果上方需求无法满足您的需求可以使用自定义" class="header-anchor">#</a> 如果上方需求无法满足您的需求可以使用自定义:</h4> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> InstructRequestAxios <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+<span class="token comment">// 创建实例</span>
+<span class="token keyword">const</span> request <span class="token operator">=</span> InstructRequestAxios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    responseCode<span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">200</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">customCheck</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span>option<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> option<span class="token punctuation">.</span>responseCode<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>data<span class="token punctuation">.</span>autoKey<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 如此便会根据校验的结果来断定</span>
+</code></pre></div><h4 id="局部配置"><a href="#局部配置" class="header-anchor">#</a> 局部配置:</h4> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> InstructRequestAxios <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+<span class="token comment">// 创建实例</span>
+<span class="token keyword">const</span> request <span class="token operator">=</span> InstructRequestAxios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    responseCode<span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">200</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    codeKey<span class="token operator">:</span><span class="token string">'code'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 执行请求 如此局部将会替换全局的配置 自定义校验同理</span>
+request<span class="token punctuation">.</span><span class="token function">$request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    responseCode<span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    codeKey<span class="token operator">:</span><span class="token string">'status'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="数据是否展开"><a href="#数据是否展开" class="header-anchor">#</a> 数据是否展开</h2> <div class="custom-block tip"><p class="custom-block-title">提示</p> <p>默认axios的数据返回将是 一个 responseData 里面包含请求成功的 <code>status</code> <code>data</code> <code>headers</code> 等配置信息，默认我们最需要的便是 <code>data</code> 后台返回的内容</p></div> <h3 id="配置字段-rest-默认为true"><a href="#配置字段-rest-默认为true" class="header-anchor">#</a> 配置字段 rest 默认为true</h3> <h4 id="不展开的数据格式"><a href="#不展开的数据格式" class="header-anchor">#</a> 不展开的数据格式:</h4> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token punctuation">{</span>
+    status<span class="token operator">:</span><span class="token number">200</span><span class="token punctuation">,</span>
+    headers<span class="token operator">:</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    data<span class="token operator">:</span><span class="token punctuation">{</span>
+        code<span class="token operator">:</span><span class="token number">200</span><span class="token punctuation">,</span>
+        msg<span class="token operator">:</span><span class="token string">'成功'</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>option
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="展开的数据格式"><a href="#展开的数据格式" class="header-anchor">#</a> 展开的数据格式:</h4> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token punctuation">{</span>
+    code<span class="token operator">:</span><span class="token number">200</span><span class="token punctuation">,</span>
+    msg<span class="token operator">:</span><span class="token string">'成功'</span><span class="token punctuation">,</span>
+    data<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="弹窗配置"><a href="#弹窗配置" class="header-anchor">#</a> 弹窗配置</h2> <div class="custom-block tip"><p class="custom-block-title">提示</p> <p>弹窗配置用于请求的弹窗提示等工作，多用于插件</p></div> <h4 id="配置-2"><a href="#配置-2" class="header-anchor">#</a> 配置:</h4> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> InstructRequestAxios <span class="token keyword">from</span> <span class="token string">'instruct-request-axios'</span><span class="token punctuation">;</span>
+<span class="token comment">// 创建实例</span>
+<span class="token keyword">const</span> request <span class="token operator">=</span> InstructRequestAxios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    message<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token comment">// 正常提示</span>
+        <span class="token function-variable function">info</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>content<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>duration<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">,</span>onClose<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">Function</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">// 成功提示</span>
+        <span class="token function-variable function">success</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>content<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>duration<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">,</span>onClose<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">Function</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">// 错误的提示</span>
+        <span class="token function-variable function">error</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>content<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>duration<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">,</span>onClose<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">Function</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">// 警告的提示</span>
+        <span class="token function-variable function">warning</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>content<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>duration<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">,</span>onClose<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">Function</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">// 加载</span>
+        <span class="token function-variable function">loading</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>content<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>duration<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">number</span><span class="token punctuation">,</span>onClose<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">Function</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">// 关闭以上的提示</span>
+        <span class="token function-variable function">close</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>unqiue<span class="token operator">:</span><span class="token builtin">any</span><span class="token punctuation">,</span>type<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">// 关闭所有</span>
+        <span class="token function-variable function">closeAll</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">// 确认弹窗</span>
+        <span class="token function-variable function">confirm</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>option<span class="token operator">:</span>RequestMessageConfrim<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 确认消息弹窗配置</span>
+<span class="token keyword">interface</span> <span class="token class-name">RequestMessageConfrim</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 标题</span>
+    title<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 内容</span>
+    content<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 确认文本</span>
+    confirmText<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 确认颜色</span>
+    confirmColor<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 确认类型</span>
+    confirmType<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 取消文本</span>
+    cancelText<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 取消颜色</span>
+    cancelColor<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 取消类型</span>
+    cancelType<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token comment">// 点击其他位置是否可以关闭</span>
+    maskClosable<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">boolean</span><span class="token punctuation">,</span>
+    <span class="token comment">// 使用esc 是否可以关闭</span>
+    keyboard<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">boolean</span><span class="token punctuation">,</span>
+    <span class="token comment">// 自定义按钮组</span>
+    buttonGroup<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">Array</span><span class="token operator">&lt;</span><span class="token punctuation">{</span>
+        button<span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+        trigger<span class="token operator">:</span><span class="token builtin">Function</span><span class="token punctuation">,</span>
+        color<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span><span class="token punctuation">,</span>
+        type<span class="token operator">?</span><span class="token operator">:</span><span class="token builtin">string</span>
+    <span class="token punctuation">}</span><span class="token operator">&gt;</span><span class="token punctuation">,</span>
+    <span class="token comment">// 点击确认触发</span>
+    confirm<span class="token operator">?</span><span class="token operator">:</span><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token keyword">void</span> <span class="token operator">|</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">,</span>
+    <span class="token comment">// 点击取消触发</span>
+    cancel<span class="token operator">?</span><span class="token operator">:</span><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token keyword">void</span> <span class="token operator">|</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/zh/basics/introduction/" class="prev">
+        入门
+      </a></span> <span class="next"><a href="/zh/basics/response/">
+        结果
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.351c32ee.js" defer></script><script src="/assets/js/2.0b262f75.js" defer></script><script src="/assets/js/13.5a1180ee.js" defer></script>
+  </body>
+</html>
