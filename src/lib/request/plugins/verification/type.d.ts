@@ -2,7 +2,9 @@ import {
     VerificationClassOption,
     VerificationTriggerFunction,
     VerificationBuiltFormat,
-    VerificationMode
+    VerificationMode,
+    VerificationResult,
+    VerificationItem
 } from './lib/type';
 
 import Verification from './lib/verification';
@@ -21,6 +23,8 @@ export interface VerificationExtendOption <T=Record<string,any>,D=Record<string,
 export interface VerificationUseOption<T=Record<string,any>,D=Record<string,any>> extends VerificationExtendOption<T,D>{
     mode?: keyof VerificationMode,
     useKey?:VerificationUseKey,
+    // 默认的提示key
+    tipKey?:string,
     // 是否提示 false 为不提示 如果为 true 默认为 info
     tip?: boolean | RequestMessageOption
 }
@@ -31,16 +35,16 @@ export interface VerificationPlugin extends RequestPlugin<any,VerificationUseOpt
 
 export type VerificationUseKey = keyof AxiosRequestConfig;
 
-export interface VerificationOption<T extends keyof VerificationMode = 'default'> extends VerificationClassOption<VerificationMode[T]>{
+export interface VerificationOption<T extends keyof VerificationMode = keyof VerificationMode> extends VerificationClassOption<VerificationMode[T]>{
     // 执行模式 如果存在next 将失效
     mode?: T,
     // 直接使用 已有字段
     useKey?:VerificationUseKey,
     // 是否提示 
-    tip?: boolean | RequestMessageOption
+    tip?: boolean | RequestMessageOption | ((result:VerificationResult)=> RequestMessageOption | boolean)
 }
 
-export type VerificationPluginOption<T extends keyof VerificationMode = 'default'> = VerificationUseKey | VerificationOption<T>;
+export type VerificationPluginOption<T extends keyof VerificationMode = keyof VerificationMode> = VerificationUseKey | VerificationOption<T>;
 
 // 向外界开放
 export interface VerifictionRequestExtend {

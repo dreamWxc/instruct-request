@@ -70,7 +70,7 @@ interface RequestInstructionObject<T,I,D> extends ResponseSuccess{
 type RequestInstruction<T,I,D> = RequestInstructionObject<T,I,D> & Record<string, any>;
 
 interface RequestConfigInstruction<T=any,I=any,D=any> extends AxiosRequestConfig,RequestInstruction<T,I,D>,RequestPluginInstructionObject<T,I,D>{
-    ceshi?:I,
+    
 }
 
 type DefaultRequestConfigInstruction = RequestConfigInstruction<any,any,any>
@@ -125,7 +125,7 @@ export interface InstructionOption {
 
 export interface InstructionPostOption extends InstructionOption{
     // 返回的参数
-    responseData:ResponseData;
+    responseData:InstructionExitParams;
     // 最终使用的数据
     responseRestData:UseResponseData
     // 返回给用户使用的 data
@@ -139,7 +139,8 @@ export type ExitTriggers = {
 }
 
 interface InstructionExitParams extends ResponseData{
-    custom?:boolean
+    custom?:boolean,
+    cancel?:boolean
 }
 
 export interface InstructionExit<T extends InstructionExitParams = InstructionExitParams> {
@@ -195,7 +196,7 @@ export interface RequestResponse {
 export type ReuqestAgentTypeName = '$upload' | '$request';
 
 export interface RequestAgentFunction<T,I,D>{
-    (config:I):PromiseExtend<T,D>
+    (config:DefaultRequestConfigInstruction):PromiseExtend<T,D>
 }
 
 export interface OutsideRequestObject<T=RequestResponse,I = Record<string, any>,D=AxiosError<RequestConfigInstruction<T,I,AxiosError>>> {

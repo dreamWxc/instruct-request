@@ -7,8 +7,6 @@ const request = In.create({
 
 SlicePlugin.register(request);
 
-CachePlugin.register(request);
-
 const speed = document.getElementById('speed');
 
 const sliceExtend = request.extend('slice')();
@@ -27,12 +25,9 @@ el.onclick = function() {
     el.innerHTML = controller.suspend ? '继续' :'暂停'
 }
 
-request.$request({
-    url:'https://bizconfweb.yunkust.com/index/index/video_data',
-    cache:true
-}).then((data)=>{
-    data.cache().update();
-});
+document.getElementById('cancel').onclick = function() {
+    controller.cancel();
+}
 
 document.getElementsByTagName('input')[0].onchange = function(this:HTMLInputElement){
 
@@ -41,7 +36,7 @@ document.getElementsByTagName('input')[0].onchange = function(this:HTMLInputElem
         file:{
            file: this.files[0],
            analysis:10,
-           controller,
+        //    controller,
            mergeAnalysis:10,
         //    mode:'many',
         //    manyNumber:5,

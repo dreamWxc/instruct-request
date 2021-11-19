@@ -33,7 +33,7 @@ export default class UploadExtend extends CacheDataExtend{
 
     // 创建上传上下文
     createdController(){
-        return new UploadContxt();
+        return new UploadContxt({},this.cache);
     }
 
     // 获取参数

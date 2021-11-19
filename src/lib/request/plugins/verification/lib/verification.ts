@@ -119,16 +119,16 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
             // 获取校验结果
             if(result && result.result){
                 // 校验是否可以继续执行
-                if(option.next && !option.next(result.result,item,triggerArg.resultValues)) {
-                    return false;
-                } 
+                if(option.next) {
+                    return option.next(result.result,item,triggerArg.resultValues);
+                }
                 // 返回是否继续执行
                 return Verification.checkVerificationtNext(result.result.verification,option.mode);
             }
         });
-
     
         let endResult = Verification.returnVerificationResult<T>(triggerArg);
+
        
         // 执行回调函数
         if(triggerArg.resultFail) {
@@ -188,8 +188,9 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
                         if(resultRules === undefined) resultRules = [];
                         resultRules.push({
                             verification:result,
+                            item,
                             ruleKey:ruleKey as keyof VerificationRulesArg,
-                            tip: Verification.getTips(rules[ruleKey],item[option.option.tipKey || 'placeholder'])
+                            tip: Verification.getTips(rules[ruleKey],item[option.option.tipKey])
                         });
 
                     }
@@ -261,9 +262,10 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
                 result:option.resultOrder.map((item)=> {
                     return option.result[item].result;
                 }),
-                value: option.resultFail ? undefined :option.resultValues
+                value: option.resultFail ? undefined :option.resultValues,
+                item:undefined
             };
-            case 'default': return option.resultFail ? option.resultFail[0].result : { verification:true,value:option.resultValues };
+            case 'default': return option.resultFail ? option.resultFail[0].result : { verification:true,value:option.resultValues,item:undefined };
         }
 
     }
@@ -317,7 +319,7 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
     
             // 增加排序
             if(triggerArg.resultOrder === undefined) triggerArg.resultOrder = [exportKey];
-            else if(!triggerArg.resultOrder.includes(exportKey)) triggerArg.resultOrder.push(key);
+            else if(!triggerArg.resultOrder.includes(exportKey)) triggerArg.resultOrder.push(exportKey);
     
             // 注入结果
             if(result.result){

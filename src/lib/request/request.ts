@@ -186,6 +186,18 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
             "post"
         ),config)) {
             let status:ResponseTypeStatus = config.status === "success" ? "success" : "fail"
+
+            if(status === 'fail' && config.responseData.constructor && config.responseData.constructor.name === 'Cancel') {
+                config.responseData = {
+                    data:null,
+                    status: 500,
+                    statusText: (config.responseData as any).message,
+                    config:undefined,
+                    headers:undefined,
+                    custom:true,
+                    cancel:true
+                };
+            }
             // 执行相应的处理
             if (this.triggerInstruction<InstructionPostOption>(this.agentSearch(
                 config,

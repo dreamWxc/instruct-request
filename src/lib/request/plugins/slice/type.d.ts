@@ -2,7 +2,8 @@ import {
     ResponseSuccess,
     RequestConfigInstruction,
     ResponseData,
-    RequestResponse
+    RequestResponse,
+    DefaultRequestConfigInstruction
 } from '../../type';
 
 import {
@@ -109,6 +110,10 @@ export interface UploadExtendSpeedParams {
 export interface RequestUploadInstructionFile<T=RequestResponse,I=Record<string,any>,D=AxiosError> extends ResponseSuccess{
     // 名称
     name?:string,
+    // 如果不支持提交的地址
+    supportURL?:string,
+    // 如果不支持 回调
+    support?: (requestData:RequestConfigInstruction<T,I,D>)=> void
     // 如果file存有记录 是否依照记录继续执行
     record?:boolean,
     // 自定义存储信息
