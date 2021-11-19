@@ -43,9 +43,9 @@ const verificationRules:VerificationTrigger={
 
         if(result && result.verification) {
             if(option.option.absolutely === false) {
-                return option.option.value == value;
+                return option.value == value;
             } else {
-                return option.option.value === value;
+                return option.value === value;
             }
         } else {
             return false;

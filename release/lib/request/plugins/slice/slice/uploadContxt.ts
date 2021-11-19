@@ -7,6 +7,10 @@ import Cache from '../../cache/cache';
 
 import slicePlugin from '../index';
 
+import axios,{CancelTokenSource} from 'axios';
+
+const CancelToken = axios.CancelToken;
+
 export default class UploadContxt implements RequestContxtParams{
 
     // 成功的数量
@@ -33,28 +37,51 @@ export default class UploadContxt implements RequestContxtParams{
     mergeAnalysis?:number
     // 总共分片数量
     total:number;
-
     // 自定义存储信息
     stroage:Record<string,any>
-
     // 系统暂存信息
     storageContent:Record<string,any>
-
     // 存储
     _surplus:Array<number>
 
     // 定义获取 unique中
-    __unique:boolean
+    __unique:boolean;
 
-    constructor(data?:{[key in keyof RequestContxtParams]?:RequestContxtParams[key]}){
+    // 取消
+    protected cancelToken:CancelTokenSource;
+
+    constructor(data?:{[key in keyof RequestContxtParams]?:RequestContxtParams[key]},protected resultCache?:Cache){
         this.setParams(data);
+        this.cancelToken = CancelToken.source();
+    }
+
+    // 获取请求的 cancelToken
+    getCancelToekn(){
+        return this.cancelToken.token;
+    }
+
+    // 退出
+    exit:boolean = false;
+
+    // 取消本次请求
+    cancel(message?:string,remove=true){
+        this.exit = true;
+        this.over();
+        if(this.cancelToken) this.cancelToken.cancel(message || 'slice cancel');
+        this.cancelToken = CancelToken.source();
+        return remove && this.removeStorage(this.unique,this.resultCache);
     }
 
     clear(){
+        this.clearDefault();
+        this.suspend = false;
+    }
+
+    clearDefault(){
         this.storageContent = undefined;
         this.fail = undefined;
         this.end = false;
-        this.suspend = false;
+        this.exit = false;
     }
 
     setParams(data?:{[key in keyof RequestContxtParams]?:RequestContxtParams[key]}){

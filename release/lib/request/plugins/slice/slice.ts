@@ -2,7 +2,8 @@ import {
     RequestConfigInstruction,
     InstructionPostOption,
     ResponseData,
-    RequestResponse
+    RequestResponse,
+    DefaultRequestConfigInstruction
 } from '../../type';
 
 import {
@@ -46,7 +47,7 @@ export default class UploadSlice<T,I,D> extends UploadExtend{
 
             let resultUploadContxt = uploadContxt || fileOption.controller;
 
-            if(resultUploadContxt.__unique) return;
+            if(resultUploadContxt && resultUploadContxt.__unique) return;
 
             let uploadConfig:RequestUploadParams = this.createConfig(fileOption);
 
@@ -132,7 +133,7 @@ export default class UploadSlice<T,I,D> extends UploadExtend{
 
             let cache = this.getCacheParams(fileOption.cache);
             let storageContxt:RequestContxtParams;
-            if(fileOption.cache) {
+            if(fileOption.cache && fileOption.record) {
                 let resutlStorageContxt = this.cache.getItem(hash,cache);
                 if(resutlStorageContxt && resutlStorageContxt.data) {
                     storageContxt = resutlStorageContxt.data as unknown as RequestContxtParams;
@@ -206,9 +207,8 @@ export default class UploadSlice<T,I,D> extends UploadExtend{
         }
 
         const callback = (response)=> {
-
             // 如果为暂停 停止执行此操作
-            if(uploadContxt.suspend) return;
+            if(uploadContxt.suspend || uploadContxt.exit) return;
             
             // 触发完成
             if(config && onUploadProgress) {
@@ -217,6 +217,7 @@ export default class UploadSlice<T,I,D> extends UploadExtend{
 
             if(fileOption.merge){
                 let object = this.getRequestObject(fileOption,response,uploadConfig);
+                object.cancelToken = uploadContxt.getCancelToekn();
                 let rule = !!(uploadConfig.__merge && onUploadProgress);
                 if(rule) {
                     let toSotrageOnUploadProgress = object.onUploadProgress;
@@ -227,6 +228,7 @@ export default class UploadSlice<T,I,D> extends UploadExtend{
                 }
 
                 this.request['$'+(object.requestMode || 'request')](object).then((response)=>{
+                    if(uploadContxt.exit) return;
                     // 如果可以执行
                     rule && UploadSlice.mergeUploadProgress(undefined,uploadConfig,onUploadProgress,true);
                     // 删除暂存
@@ -280,9 +282,17 @@ export default class UploadSlice<T,I,D> extends UploadExtend{
 
     upload<childT = T,childD = D>(requestConfig:I & RequestConfigInstruction<childT,I,childD>,option?:RequestUploadInstructionFile<any>):PromiseExtend<childT,childD> {
 
-        let promiseExtend =  new PromiseExtend<childT,childD>((resolve,reject)=>{
+        let promiseExtend = new PromiseExtend<childT,childD>((resolve,reject)=>{
 
-            if(!UploadSlice.jurisdiction) return reject(undefined);
+            if(!UploadSlice.jurisdiction){
+                requestConfig.file.support && requestConfig.file.support(requestConfig);
+            }
+
+            if(requestConfig.file && requestConfig.file.controller){
+                // 清除状态
+                requestConfig.file.controller.clearDefault();
+            }
+
 
             // 创建配置文件
             let config = this.request.createFront(requestConfig,{
@@ -397,7 +407,15 @@ export default class UploadSlice<T,I,D> extends UploadExtend{
             };
         }
 
-        return this.request.upload<ResponseData,ResponseData>(Object.assign({},config.requestData,{rest:false,onUploadProgress:useUploadProgress})).then((response)=>{
+        let mergeRequestData:DefaultRequestConfigInstruction = {rest:false,onUploadProgress:useUploadProgress,cancelToken:uploadContxt.getCancelToekn()};
+
+        if(!UploadSlice.jurisdiction) {
+            if(config.requestData.file.supportURL) {
+                mergeRequestData.url = config.requestData.file.supportURL;
+            }
+        }
+
+        return this.request.upload<ResponseData,ResponseData>(Object.assign({},config.requestData,mergeRequestData)).then((response)=>{
                 // 如果仍然存在分片触发
                 if(this.request.verificationSuccessful(response,fileOption,config)) {
                     uploadContxt.setSuccessSlice(resultUploadConfig.index);
@@ -507,7 +525,7 @@ export default class UploadSlice<T,I,D> extends UploadExtend{
     createConfig(fileOption:RequestUploadInstructionFile<T,I,D>):RequestUploadParams{
         return  {
             index:0,
-            total: Math.ceil(fileOption.file.size / fileOption.splitSize),
+            total: UploadSlice.jurisdiction ?  Math.ceil(fileOption.file.size / fileOption.splitSize) : 1,
             size: fileOption.file.size,
             file: fileOption.file,
             name: fileOption.name || (fileOption.file as File).name,
@@ -546,48 +564,64 @@ export default class UploadSlice<T,I,D> extends UploadExtend{
                 }
                 return relove(fileOption.unique);
             } else {
-                let fileReader = new FileReader();
-                let spark = new SparkMD5.ArrayBuffer();
-            
-                let currentChunk = config.index;
 
-                fileReader.onload = function (e) {
-                    spark.append(e.target.result);
-                    currentChunk++;
-
-                    if((uploadContxt && !uploadContxt.suspend) && requestConfig && requestConfig.requestData.onUploadProgress && config.__analysis) {
-                        requestConfig.requestData.onUploadProgress(UploadExtend.getSpeedParams({
-                            loaded: config.__analysis * (currentChunk / config.total),
-                            total: config.total + config.__analysis
-                        },config));
-                    }
-
-                    if (currentChunk < config.total) {
-                        return loadNext();
-                    } else {
-
-                        let hash = spark.end();
-
-                        if(uploadContxt) {
-                            uploadContxt.setParams({unique:hash});
+                if(UploadSlice.jurisdiction) {
+                    let fileReader = new FileReader();
+                    let spark = new SparkMD5.ArrayBuffer();
+                
+                    let currentChunk = config.index;
+    
+                    fileReader.onload = function (e) {
+                        spark.append(e.target.result);
+                        currentChunk++;
+    
+                        if((uploadContxt && !uploadContxt.suspend) && requestConfig && requestConfig.requestData.onUploadProgress && config.__analysis) {
+                            requestConfig.requestData.onUploadProgress(UploadExtend.getSpeedParams({
+                                loaded: config.__analysis * (currentChunk / config.total),
+                                total: config.total + config.__analysis
+                            },config));
                         }
-                        return relove(hash);
+    
+                        if (currentChunk < config.total) {
+                            return loadNext();
+                        } else {
+    
+                            let hash = spark.end();
+    
+                            if(uploadContxt) {
+                                uploadContxt.setParams({unique:hash});
+                            }
+                            return relove(hash);
+                        }
+                    };
+                    fileReader.onerror = reject;
+                    const loadNext =()=>{
+                        return fileReader.readAsArrayBuffer(this.slice(fileOption,currentChunk,config));
                     }
-                };
-                fileReader.onerror = reject;
-                const loadNext =()=>{
-                    return fileReader.readAsArrayBuffer(this.slice(fileOption,currentChunk,config));
+                    loadNext();
+                } else {
+                    let dateNumber = +new Date();
+                    if(this.distribution === undefined){
+                        this.distribution = dateNumber+'-'+Math.ceil(Math.random() * 10000000);
+                    }
+                    return relove(config.name + '-' + dateNumber + '-' + Math.ceil(Math.random() * 10000000)+'-'+this.distribution);
                 }
-                loadNext();
             }
-
         })
     }
 
+    private distribution:string;
+
     slice(fileOption,index:number,config:RequestUploadParams){
-        let start = index * fileOption.splitSize,
-        end = ((start + fileOption.splitSize) >= config.size) ? config.size : start + fileOption.splitSize;
-        return this.blobSlice.call(fileOption.file,start,end);
+
+        if(UploadSlice.jurisdiction) {
+            let start = index * fileOption.splitSize,
+            end = ((start + fileOption.splitSize) >= config.size) ? config.size : start + fileOption.splitSize;
+            return this.blobSlice.call(fileOption.file,start,end);
+        } else {
+            return fileOption.file;
+        }
+        
     }
 
 }

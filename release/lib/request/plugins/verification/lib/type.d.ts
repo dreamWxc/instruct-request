@@ -70,7 +70,9 @@ interface VerificationResult<T=any> {
     // 结果，当校验成功会存在此字段
     value?:T,
     // 结果，当校验成功会存在此字段
-    key?:string
+    key?:string,
+    // 当前校验的item 如果为全部结果集，则没有
+    item:VerificationItem
 }
 
 interface VerificationEndResult extends VerificationResult {

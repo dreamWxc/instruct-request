@@ -42,6 +42,9 @@ cache 正常执行时间为 160ms
 - verification 用于校验给定格式的数据,通过定义的方式导出
 - tip 用于提示接口的返回值，通过给定的 message 进行通知
 - slice 图片分片传输
+
+## 查看文档
+<a href="https://dreamwxc.github.io/instruct-request-axios/">文档链接</a>
 ## 示例
 
 <br />

@@ -1,13 +1,19 @@
 {
   "name": "instruct-request-axios",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "指令请求器",
   "keywords": [
     "ajax",
     "指令"
   ],
-  "main": "index.js",
-  "browser": "dist/index.js",
+  "repository":"https://github.com/dreamWxc/instruct-request-axios",
+  "bugs": {
+    "url": "https://github.com/dreamWxc/instruct-request-axios/issues"
+  },
+  "sideEffects":false,
+  "main": "./index.js",
+  "module": "./index.js",
+  "browser": "./dist/index.js",
   "typings": "./index.d.ts",
   "jsdelivr": "dist/index.js",
   "unpkg": "dist/index.js",

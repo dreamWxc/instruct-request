@@ -22,7 +22,7 @@ const config = {
     uploadSlice:undefined,
     // 向外界开放
     extend:function(options?:RequestUploadCache){  
-        return UploadSlice.jurisdiction && new UploadExtend(config.uploadSlice.cache,options)
+        return new UploadExtend(config.uploadSlice.cache,options)
     },
     // 默认的配置
     defaultOption:{
@@ -37,22 +37,25 @@ const config = {
                 'size':'size',
                 'name':'name'
             },
-            splitSize: 2 * 1024 * 1024
+            splitSize: 2 * 1024 * 1024,
+            record:true
     } as SlicePluginOption,
     // 安装时触发
     install(target:Request,option?:SlicePluginOption){
 
-        if(UploadSlice.jurisdiction) {
-            if(this.uploadSlice === undefined) this.uploadSlice = new UploadSlice(target,new Cache('X19maWxlX3NsaWNlX18='));
+        if(this.uploadSlice === undefined) this.uploadSlice = new UploadSlice(target,new Cache('X19maWxlX3NsaWNlX18='));
 
-            // 创建配置
-            option = this.createConfig(option,target);
+        // 创建配置
+        option = this.createConfig(option,target);
 
-            // 注册代理
-            return target.agent('$upload',<T,D>(config)=> {
+        // 注册代理
+        return target.agent('$upload',<T,D>(config)=> {
+            if(config.file) {
                 return (this.uploadSlice as UploadSlice<T,any,D>).upload<T,D>(config,option);
-            });
-        }
+            } else {
+                return target.upload<T,D>(config);
+            }
+        });
 
 
     },

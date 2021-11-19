@@ -15,7 +15,9 @@ export default {
 
     // 默认的配置
     defaultOption:{
-        mode:'default'
+        mode:'default',
+        tip:true,
+        tipKey:'placeholder'
     } as VerificationUseOption,
 
     // 校验对象
@@ -44,14 +46,15 @@ export default {
 
                 // 如果校验不通过
                 if(!result.verification) {
-                    if(resultOption.tip) {
-                        let tip:RequestMessageOption = 'info';
-                        if(resultOption.tip && typeof resultOption.tip === 'string') {
-                            tip = resultOption.tip;
-                        } else if(option.tip && typeof option.tip === 'string') {
-                            tip = option.tip;
-                        }
-                        target.message(tip,config,{content:result.tip});
+
+                    let resultUseTip = resultOption.tip || option.tip;
+
+                    if(typeof resultUseTip === 'function') {
+                        resultUseTip = resultUseTip(result);
+                    }
+
+                    if(resultUseTip) {
+                        target.message(typeof resultUseTip === 'string' ? resultUseTip :'info',config,{content:result.tip});
                     }
                 
                     return config.exit({
@@ -110,7 +113,7 @@ export default {
 
     },
 
-    register<T=Record<string,any>,D=Record<string,any>>(target,option?:VerificationUseOption<T,D>){
+    register<T=Record<string,any>,D=Record<string,any>>(target,option:VerificationUseOption<T,D>={}){
         target && target.$use(this,option);
         this.verication = new Verification<T,D>(option.rules,option.formats);
         return this.verication;
