@@ -1,20 +1,26 @@
 {
-  "name": "instruct-request-axios",
-  "version": "0.1.0",
-  "description": "指令请求器",
-  "keywords": [
-    "ajax",
-    "指令"
-  ],
-  "main": "index.js",
-  "browser": "dist/index.js",
-  "typings": "./index.d.ts",
-  "jsdelivr": "dist/index.js",
-  "unpkg": "dist/index.js",
-  "author": "Fighter",
+  "name": "instruct-request",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "build": "node index.js && webpack --config webpack.pro.js"
+  },
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.4",
-    "md5-typescript": "^1.0.5"
+    "spark-md5": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.15.6",
+    "babel-loader": "^8.2.2",
+    "core-js": "^3.17.3",
+    "fs": "*",
+    "html-webpack-plugin": "^5.3.2",
+    "path": "^0.12.7",
+    "progress": "^2.0.3",
+    "ts-loader": "^9.2.5",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^4.2.1"
   }
 }
