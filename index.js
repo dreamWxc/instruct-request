@@ -3,7 +3,6 @@ var path = require('path');//解析需要遍历的文件夹
 var process = require('child_process');
 var ProgressBar = require('progress');
 
-
 let queue = [
     'rm -rf ./release/lib',
     'rm -rf ./release/docs',

@@ -1,57 +1,20 @@
-import In,{ SlicePlugin,CachePlugin } from './index';
+import Instruction,{VerificationPlugin,CachePlugin} from "./index";
 
-const request = In.create({
-    baseURL:'http://127.0.0.1:9000',
-    method:'post'
+const request = Instruction.create({
+    baseURL:'http://atest.honorjiahua.com:56462',
+    method:'POST'
 });
 
-SlicePlugin.register(request);
+VerificationPlugin.register(request);
 
-const speed = document.getElementById('speed');
+CachePlugin.register(request,{
+    storage:'local'
+});
 
-const sliceExtend = request.extend('slice')();
 
-const controller = sliceExtend.createdController();
-
-const el = document.getElementById('button');
-
-el.onclick = function() {
-    if(controller.suspend) {
-        controller.play();
-    } else {
-        controller.pause();
-    }
-
-    el.innerHTML = controller.suspend ? '继续' :'暂停'
-}
-
-document.getElementById('cancel').onclick = function() {
-    controller.cancel();
-}
-
-document.getElementsByTagName('input')[0].onchange = function(this:HTMLInputElement){
-
-    request.$upload({
-        url:'/file/upload',
-        file:{
-           file: this.files[0],
-           analysis:10,
-        //    controller,
-           mergeAnalysis:10,
-        //    mode:'many',
-        //    manyNumber:5,
-           merge:{
-               url:'/file/merge_chunks'
-           },
-        //    cache:'local'
-        },
-        onUploadProgress:function(progress){
-            speed.innerHTML = Math.round(progress.loaded / progress.total * 100) + '%';
-        }
-    }).then((response)=>{
-        console.log(response);
-    }).catch((response)=>{
-        console.log(response);
-    })
-
-}
+request.$request({
+    url:'/codeBom/list',
+    cache:true
+}).then((data)=>{
+    console.log(data.isCache,data);
+});

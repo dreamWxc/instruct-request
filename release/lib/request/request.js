@@ -81,7 +81,7 @@ export default class Request extends Instructions {
             if (!exit.next)
                 return;
             if (status === "none") {
-                console.info('request exit:', value);
+                value && console.info('request exit:', value);
                 end = true;
             }
             let trigger = exit.triggers[status];
@@ -135,7 +135,7 @@ export default class Request extends Instructions {
         return true;
     }
     // 执行后续
-    triggerPost(config, callback, end = true) {
+    triggerPost(config, callback, end = true, restAll = false) {
         // 执行后置处理
         if (this.triggerInstruction(this.agentSearch(config, "post"), config)) {
             let status = config.status === "success" ? "success" : "fail";
@@ -153,7 +153,10 @@ export default class Request extends Instructions {
             // 执行相应的处理
             if (this.triggerInstruction(this.agentSearch(config, status), config)) {
                 let exit = config.exit;
-                let responseData = this.getSuccessDataMode(config);
+                let responseData = config.responseData;
+                if (!restAll) {
+                    responseData = this.getSuccessDataMode(config);
+                }
                 delete config.extend;
                 config = null;
                 return exit(responseData, status, end);
@@ -184,6 +187,38 @@ export default class Request extends Instructions {
         ResponseData.prototype = config.responseExtendChain;
         responseData = new ResponseData(responseData, isObject);
         return responseData;
+    }
+    // 请求合并
+    all(data, requestConfig) {
+        let promiseExtend = new PromiseExtend((resolve, reject) => {
+            // 创建配置文件
+            let config = this.createFront(requestConfig || {}, {
+                "success": resolve,
+                "fail": reject
+            });
+            if (config) {
+                if (typeof data === 'function') {
+                    data = data();
+                }
+                PromiseExtend.all(data).then((response) => {
+                    return this.setSuccessResponseData(response, config, true);
+                }).catch((response) => {
+                    // @ts-ignore
+                    config.responseData = response;
+                    config.status = "fail";
+                }).finally(() => {
+                    return this.triggerPost(config, function () {
+                        promiseExtend = null;
+                        config = null;
+                    }, true, true);
+                });
+            }
+            else {
+                promiseExtend = null;
+                config = null;
+            }
+        });
+        return promiseExtend;
     }
     // 请求
     request(requestConfig) {
@@ -356,21 +391,23 @@ export default class Request extends Instructions {
         }
     }
     // 设置成功的数据
-    setSuccessResponseData(response, config) {
+    setSuccessResponseData(response, config, setAll = false) {
         config.status = 'success';
         config.responseData = response;
-        config.responseRestData = response.data;
-        config.responseExtendChain = {
-            __sign: config.sign,
-            isSuccess: this.verificationSuccessful(response, Object.assign({}, this.config, config.requestData), config)
-        };
-        // 是否展开
-        let rest = this.getConfig('rest', config);
-        if (rest) {
-            config.responseResultData = response.data;
-        }
-        else {
-            config.responseResultData = response;
+        if (!setAll) {
+            config.responseRestData = response.data;
+            config.responseExtendChain = {
+                __sign: config.sign,
+                isSuccess: this.verificationSuccessful(response, Object.assign({}, this.config, config.requestData), config)
+            };
+            // 是否展开
+            let rest = this.getConfig('rest', config);
+            if (rest) {
+                config.responseResultData = response.data;
+            }
+            else {
+                config.responseResultData = response;
+            }
         }
     }
 }

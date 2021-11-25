@@ -4,9 +4,6 @@
 此插件根据浏览器支持`html5`息息相关,里面使用`Blob`,`FileReader`类,如果浏览器不支持此两个类，此插件将默认 仅用一个`分片传输`如果希望不被支持时使用其他模式可以通过 `support` 或者 `supportURL` 来定义不支持时的请求链接
 :::
 
-## 请求状态码
-兼容了外界的请求状态码的配置,如果不定义则使用外部的请求配置[查看详情](/zh/basics/request/#请求状态码)
-
 ## 分片模式
 - queue 队列一个一个的传输
 - many  多个一起传输
@@ -216,33 +213,6 @@ interface RequestUploadInstructionFile<T=RequestResponse,I=Record<string,any>,D=
 因为分片会生成很多的参数配置，需要传输到后端,用于配置相应的命名 [查看详情](/zh/plugins/slice/#替换参数-replacedata)
 
 ## 控制器(controller)
-``` ts 
-{
-    // 获取请求的 cancelToken
-    getCancelToekn():CancelToken;
-    // 取消本次请求
-    cancel(message?:string,remove=true):void;
-    // 暂停
-    pause():void;
-    // 播放
-    play():void;
-}
-```
-### `getCancelToekn`
-获取请求的 cancelToken,用于绑定取消请求, 如果需要和上传文件同时取消可以使用此函数配置
-
-### `cancel`
-取消所有绑定`CancelToekn`的请求，上传文件都会被绑定
-#### 参数 (message:string,remove:boolean)
-message: 取消的介绍文本，将会作为失败的 `statusText`
-<br />
-remove: 是否删除传输缓存
-
-### `pause`
-暂停本次请求,如果处于合并状态，无法暂停
-
-### `play`
-继续上传本次请求
 
 
 ## 扩展

@@ -1,8 +1,85 @@
-export default class PromiseExtend {
+import config from '../request/plugins/cache';
+export default class PromiseExtend extends Promise {
+    static all(data) {
+        return new PromiseExtend(function (relosve, reject) {
+            let watchContxt = {
+                length: data.length,
+                successNumber: undefined,
+                failNumber: undefined,
+                params: undefined,
+                relosve,
+                reject,
+                callback: function (status, unique, data) {
+                    let key = status ? 'successNumber' : 'failNumber';
+                    let reveseKey = status ? 'failNumber' : 'successNumber';
+                    if (watchContxt[key] === undefined)
+                        watchContxt[key] = { length: 0 };
+                    watchContxt[key][unique] = 1;
+                    watchContxt[key].length++;
+                    if (watchContxt[reveseKey] && watchContxt[reveseKey][unique]) {
+                        delete watchContxt[reveseKey][unique];
+                        watchContxt[reveseKey].length--;
+                    }
+                    if (watchContxt.params === undefined)
+                        watchContxt.params = [];
+                    watchContxt.params[unique] = data;
+                    let count = (watchContxt.successNumber && watchContxt.successNumber.length || 0) + (watchContxt.failNumber && watchContxt.failNumber.length || 0);
+                    if (count >= watchContxt.length) {
+                        let trigger = watchContxt.failNumber && watchContxt.failNumber.length > 0 ? reject : relosve;
+                        let params = watchContxt.params;
+                        watchContxt = null;
+                        return trigger(params);
+                    }
+                }
+            };
+            return data.map(function (item, index) {
+                item.then(function (data) {
+                    return watchContxt && watchContxt.callback(true, index, data);
+                }).catch(function (data) {
+                    return watchContxt && watchContxt.callback(false, index, data);
+                });
+            });
+        });
+    }
+    static race(data) {
+        return new PromiseExtend(function (relosve, reject) {
+            let watchContxt = {
+                length: data.length,
+                status: undefined,
+                count: 0,
+                params: undefined,
+                relosve,
+                reject,
+                callback: function (status, unique, data) {
+                    if (config.status === undefined) {
+                        config.status = status;
+                    }
+                    if (watchContxt.params === undefined)
+                        watchContxt.params = [];
+                    watchContxt.params[unique] = data;
+                    let count = (watchContxt.params && watchContxt.params.length || 0);
+                    if (count >= watchContxt.length) {
+                        let trigger = config.status ? relosve : reject;
+                        let params = watchContxt.params;
+                        watchContxt = null;
+                        return trigger(params);
+                    }
+                }
+            };
+            return data.map(function (item, index) {
+                item.then(function (data) {
+                    return watchContxt && watchContxt.callback(true, index, data);
+                }).catch(function (data) {
+                    return watchContxt && watchContxt.callback(false, index, data);
+                });
+            });
+        });
+    }
     // 获取
     triggerTimeCallback;
     // 构造
     constructor(executor) {
+        super(function () { });
         if (!executor) {
             console.error('no trigger Function,this arg is', executor, 'but need typeof is Function');
         }
@@ -38,16 +115,19 @@ export default class PromiseExtend {
         });
     }
     // 成功的开放函数
+    // @ts-ignore
     then(onfulfilled) {
         this.subscribe('resolves', onfulfilled);
         return this;
     }
     // 完成的开放函数
+    // @ts-ignore
     finally(onfulfilled) {
         this.subscribe('finallys', onfulfilled);
         return this;
     }
     // 失败的开放函数
+    // @ts-ignore
     catch(onfulfilled) {
         this.subscribe('rejects', onfulfilled);
         return this;

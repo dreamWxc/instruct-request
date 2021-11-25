@@ -1,4 +1,4 @@
-import instructRequest,{RequestConfigInstruction}  from './lib/request/index.d';
+import instructRequest,{RequestConfigInstruction,OutsideRequestObject}  from './lib/request/index.d';
 
 import Instructions from './lib/instructions/index';
 
@@ -41,7 +41,8 @@ export {
     VerificationOption,
     RequestUploadInstructionFile,
     TipPluginOption,
-    TipOptionObject
+    TipOptionObject,
+    OutsideRequestObject as RequestClass
 }
 
 export default instructRequest;

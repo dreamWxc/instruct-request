@@ -54,6 +54,8 @@ export interface CacheOptionObject extends ResponseSuccess,StorageSetOption {
     hasWhere?:(config:InstructionOption,result:CacheReturnResult)=> boolean;
     // 获取到缓存后的处理 返回值将作为新的数据返回出去
     handle?:(cache:CacheReturnResult)=> any;
+    // 如果配置一样是否重复触发
+    repeatNext?:boolean
     // 组id 可以通过组id进行删除多个缓存
     // groupId?:string,
     /*

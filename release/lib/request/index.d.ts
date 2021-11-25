@@ -17,5 +17,6 @@ declare const instructRequest: instructRequest;
 export default instructRequest;
 
 export {
-    RequestConfigInstruction
+    RequestConfigInstruction,
+    OutsideRequestObject
 }

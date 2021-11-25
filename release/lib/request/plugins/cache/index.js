@@ -18,7 +18,9 @@ const config = {
         // 默认缓存类型为 session
         storage: 'memory',
         // 默认首次加载更新值
-        first: true
+        first: true,
+        // 重复禁止向下执行
+        repeatNext: false
     },
     // 创建cache对象
     createCache() {
@@ -57,6 +59,16 @@ const config = {
                 target.registerExtend(this, config, resultCache, resultOption);
                 // 鉴定状态是否成功
                 if ((!resultCache || !resultCache.useCache) && target.verificationSuccessful(config.responseData, resultOption, config)) {
+                    if (!resultOption.repeatNext) {
+                        let cacheData = this.cache.getItem(config.sign, resultOption);
+                        try {
+                            if (JSON.stringify(cacheData.data) === JSON.stringify(config.responseRestData)) {
+                                config.exit(undefined, 'none', true);
+                            }
+                        }
+                        catch (e) {
+                        }
+                    }
                     // 存入缓存
                     return this.cache.setItem(config.sign, config.responseRestData, resultOption);
                 }

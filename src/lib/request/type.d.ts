@@ -201,6 +201,7 @@ export interface RequestAgentFunction<T,I,D>{
 
 export interface OutsideRequestObject<T=RequestResponse,I = Record<string, any>,D=AxiosError<RequestConfigInstruction<T,I,AxiosError>>> {
     $use<T>(plugin:RequestPlugin,option?:T),
+    $all<T0=T,T1=T,T2=T,T3=T,T4=T,T5=T,T6=T,T7=T>(data:Array<PromiseExtend<T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7>> | ((config:DefaultRequestConfigInstruction)=> Array<PromiseExtend<T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7>>),requestConfig?:I & RequestConfigInstruction<T,I,D>): PromiseExtend<Array<(T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7) & ResponseExtendChain>,D>
     $request<childT=T,childD=D>(requestConfig:I & RequestConfigInstruction<childT,I,childD>): PromiseExtend<childT & ResponseExtendChain,childD>,
     $upload<childT=T,childD=D>(requestConfig:I & RequestConfigInstruction<childT,I,childD>): PromiseExtend<childT & ResponseExtendChain,childD>,
     extend<T extends keyof RequestExtend>(key:T):RequestExtend[T]

@@ -15,7 +15,8 @@ import {
     RequestMessageOption,
     RequestAgentFunction,
     ReuqestAgentTypeName,
-    DefaultRequestConfigInstruction
+    DefaultRequestConfigInstruction,
+    ResponseExtendChain
 } from './type.d';
 
 import Instructions, {
@@ -117,7 +118,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
 
             if (!exit.next) return;
             if (status === "none") {
-                console.info('request exit:', value);
+                value && console.info('request exit:', value);
                 end = true;
             }
             let trigger = exit.triggers[status];
@@ -179,7 +180,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
 
     }
     // 执行后续
-    public triggerPost(config:InstructionPostOption,callback?:Function,end:boolean=true){
+    public triggerPost(config:InstructionPostOption,callback?:Function,end:boolean=true,restAll:boolean = false){
         // 执行后置处理
         if (this.triggerInstruction<InstructionPostOption>(this.agentSearch(
             config,
@@ -204,7 +205,10 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
                 status
             ),config)) {
                 let exit = config.exit;
-                let responseData = this.getSuccessDataMode(config);
+                let responseData = config.responseData;
+                if(!restAll) {
+                    responseData = this.getSuccessDataMode(config)
+                }
                 delete config.extend;
                 config = null;
                 return exit(responseData,status,end);
@@ -242,6 +246,44 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
 
         return responseData;
 
+    }
+
+    // 请求合并
+    all<T=warpT,T1=warpT,T2=warpT,T3=warpT,T4=warpT,T5=warpT,T6=warpT,T7=warpT>(data:Array<PromiseExtend<T | T1 | T2 | T3 | T4 | T5 | T6 | T7>> | ((config:DefaultRequestConfigInstruction)=> Array<PromiseExtend<T | T1 | T2 | T3 | T4 | T5 | T6 | T7>>),requestConfig?:DefaultRequestConfigInstruction):PromiseExtend<Array<(T | T1 | T2 | T3 | T4 | T5 | T6 | T7) & ResponseExtendChain>,warpD> {
+        let promiseExtend = new PromiseExtend<Array<(T | T1 | T2 | T3 | T4 | T5 | T6 | T7) & ResponseExtendChain>,warpD>((resolve,reject)=>{
+
+            // 创建配置文件
+            let config = this.createFront(requestConfig || {},{
+                "success":resolve,
+                "fail":reject
+            }) as InstructionPostOption;
+            if(config) {
+
+                if(typeof data === 'function') {
+                    data = data(config.requestData);
+                }
+
+                PromiseExtend.all(data).then((response)=>{
+                    return this.setSuccessResponseData(response,config,true);
+                }).catch((response)=>{
+                    // @ts-ignore
+                    config.responseData = response;
+                    config.status = "fail";
+                }).finally(()=>{
+                    return this.triggerPost(config,function (){
+                        promiseExtend = null;
+                        config = null;
+                    },true,true);
+                });
+
+            } else {
+                promiseExtend = null;
+                config = null;
+            }
+
+        })
+
+        return promiseExtend;
     }
 
     // 请求
@@ -433,23 +475,27 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
     }
 
     // 设置成功的数据
-    setSuccessResponseData(response:ResponseData,config:InstructionPostOption){
+    setSuccessResponseData(response:ResponseData | any,config:InstructionPostOption,setAll:boolean=false){
         config.status = 'success';
         config.responseData = response;
-        config.responseRestData = response.data;
+        if(!setAll) {
+            config.responseRestData = response.data;
 
-        config.responseExtendChain = {
-            __sign:config.sign,
-            isSuccess: this.verificationSuccessful(response, Object.assign({},this.config,config.requestData),config)
-        };
-        // 是否展开
-        let rest = this.getConfig('rest',config);
+            config.responseExtendChain = {
+                __sign:config.sign,
+                isSuccess: this.verificationSuccessful(response, Object.assign({},this.config,config.requestData),config)
+            };
+            // 是否展开
+            let rest = this.getConfig('rest',config);
 
-        if (rest) {
-            config.responseResultData = response.data;
-        } else {
-            config.responseResultData = response;
+            if (rest) {
+                config.responseResultData = response.data;
+            } else {
+                config.responseResultData = response;
+            }
         }
+        
+        
 
     }
 

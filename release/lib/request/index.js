@@ -6,6 +6,9 @@ class OutsideRequest {
         // @ts-ignore
         this._$request$_ = new Request(config);
     }
+    $all(data, requestConfig) {
+        return this._$request$_.all(data, requestConfig);
+    }
     /*
     *   请求接口
     *   @param requestConfig 请求接口的配置参数 详细参考 RequestConfigInstruction

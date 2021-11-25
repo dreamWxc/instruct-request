@@ -19,6 +19,11 @@
 #### 参数: `memory` | `local` | `session`
 <br />
 
+### `repeatNext`
+如果请求值和缓存值一样是否还进行回调触发
+#### 参数: `Boolean`
+<br />
+
 ### `where`
 是否使用缓存 自定义 获取缓存前执行
 

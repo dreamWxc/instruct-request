@@ -5,9 +5,11 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
 
-    mode:isProduction ? 'production' : 'development',
+    mode:'development',
 
-    entry:isProduction ? './src/index.ts' : './src/devloop.ts',
+    entry:{
+        app:'./src/devloop.ts'
+    },
 
     cache:{
       type:'filesystem'
@@ -17,12 +19,7 @@ module.exports = {
         outputModule:true,
     }:undefined,
 
-    output:isProduction ? {
-        path:path.resolve(__dirname,'./release/dist'),
-        filename:'index.js',
-        libraryTarget: 'module',
-        module:true
-    } : {
+    output:{
         path:path.resolve(__dirname,'./dist'),
         filename:'index.js',
     },

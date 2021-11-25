@@ -10,9 +10,7 @@ module.exports = {
                 text: '配置', 
                 items: [
                     { text: '基本配置', link: '/api/default/' },
-                    { text: 'Cache配置', link: '/api/cache/' },
-                    { text: 'Verification配置', link: '/api/verification/' },
-                    { text: 'Slice配置', link: '/api/slice/' }
+                    { text: 'Cache配置', link: '/api/cache/' }
                 ] 
             },
             { text: 'External', link: 'https://google.com',
@@ -49,6 +47,10 @@ module.exports = {
                         {
                             title:'结果',
                             path:'/zh/basics/response/'
+                        },
+                        {
+                            title:'方法',
+                            path:'/zh/basics/function/'
                         }
                     ]
                 },
@@ -90,11 +92,6 @@ module.exports = {
                     title:'verification配置',
                     collapsable: true,
                     path:'/api/verification/'
-                },
-                {
-                    title:'slice配置',
-                    collapsable: true,
-                    path:'/api/slice/'
                 }
             ]
         },

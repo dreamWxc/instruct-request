@@ -4,7 +4,9 @@ import Request from './request';
 
 import UploadSlice from './plugins/slice/slice';
 
-import { RequestConfigInstruction,OutsideRequestObject,RequestResponse,ResponseData,RequestPlugin,InstructionPostOption,ResponseSuccess,InstructionOption,ExitTriggers,InstructionExit,ResponseTypeStatus,ResponseExtendChain,RequestExtend,RequestMessageOption } from './type.d';
+import PromiseExtend from "../extend/ProsmiseExtend";
+
+import { RequestConfigInstruction,DefaultRequestConfigInstruction,OutsideRequestObject,RequestResponse,ResponseData,RequestPlugin,InstructionPostOption,ResponseSuccess,InstructionOption,ExitTriggers,InstructionExit,ResponseTypeStatus,ResponseExtendChain,RequestExtend,RequestMessageOption } from './type.d';
 export { RequestConfigInstruction,RequestResponse,ResponseData,RequestPlugin,InstructionPostOption,ResponseSuccess,InstructionOption,ExitTriggers,InstructionExit,ResponseTypeStatus,ResponseExtendChain,RequestExtend,RequestMessageOption }
 
 export {
@@ -18,6 +20,10 @@ class OutsideRequest <T = RequestResponse,I = Record<string,any>,D = AxiosError<
     constructor(config:RequestConfigInstruction<T,I,D>) {
         // @ts-ignore
         this._$request$_ = new Request<T,D,I & RequestConfigInstruction<T,I,D>>(config);
+    }
+
+    $all<T0=T,T1=T,T2=T,T3=T,T4=T,T5=T,T6=T,T7=T>(data:Array<PromiseExtend<T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7>> | ((config:DefaultRequestConfigInstruction)=> Array<PromiseExtend<T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7>>),requestConfig:I & RequestConfigInstruction<T,I,D>){
+        return this._$request$_.all<T0,T1,T2,T3,T4,T5,T6,T7>(data,requestConfig);
     }
 
     /*

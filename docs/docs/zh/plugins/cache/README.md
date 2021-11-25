@@ -9,6 +9,11 @@
 - `local`   对应 `localStorage`   本地长缓存
 - `memory`  对应 `内存`            存储在内存中，如果页面被刷新，将会被清理掉
 
+## 触发规则
+请求时，如果存在缓存将直接执行并继续请求等待接口请求成功后再次执行，可以通过`repeatNext`配置`缓存数据`和`返回数据`一致时是否触发，默认是不触发
+<br />
+触发规则: `接口请求`->`查询缓存`->`如果存在则执行回调`->`如果存在update或first继续执行请求逻辑`->`设置缓存`->`请求成功,配置repeatNext为true直接触发回调 或 repeatNext为false对比，不想等便触发`
+
 ## 扩展结果字段
 #### 介绍:
 ``` ts
@@ -19,6 +24,7 @@
     cache:Function;
 }
 ```
+
 
 ## 外界扩展
 cache 向外开放了扩展，用于针对缓存的操作，虽然我们提供了针对请求结果的字段扩展，但这再繁杂的逻辑处理中还远远不够，`外界扩展` 和 `结果扩展`使用的 类是同一个，唯一不同的是 `扩展结果` 被定义好了参数，直接绑定了相关数据，更新时将会更加的简洁
@@ -311,6 +317,7 @@ const cache = request.extend('cache')();
     responseCode?:Array<any> | undefined,
     codeKey?:string,
     customCheck?:(config:ResponseData,option:ResponseSuccess)=>boolean
+    repeatNext?:boolean
 }
 // 执行上下文
 interface InstructionOption {
@@ -398,4 +405,9 @@ interface CacheReturnResult {
 
 #### 参数: `String`
 
+<br />
+
+### `repeatNext`
+如果请求值和缓存值一样是否还进行回调触发
+#### 参数: `Boolean`
 <br />
