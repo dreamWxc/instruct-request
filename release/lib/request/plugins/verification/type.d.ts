@@ -26,7 +26,9 @@ export interface VerificationUseOption<T=Record<string,any>,D=Record<string,any>
     // 默认的提示key
     tipKey?:string,
     // 是否提示 false 为不提示 如果为 true 默认为 info
-    tip?: boolean | RequestMessageOption
+    tip?: boolean | RequestMessageOption,
+    // 是否为激活校验, 如果不设置为激活校验，则仅有值时才校验
+    activeVerification?:boolean,
 }
 
 export interface VerificationPlugin extends RequestPlugin<any,VerificationUseOption>{

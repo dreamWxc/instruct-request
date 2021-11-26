@@ -3,6 +3,7 @@
 */
 import verificationRules from './rules';
 import format from './format';
+import verification from '../index';
 class Verification {
     constructor(rules, formats) {
         formats && this.addFormats(formats);
@@ -131,33 +132,38 @@ class Verification {
         if (rules) {
             let resultRules = undefined;
             let value = this.getValue(option.data[key], option.data[key].value, 'beforeFormat', Verification.getExportKey(option.data[key], key), option);
+            let activeVerification = item.activeVerification === undefined ? verification.defaultOption.activeVerification : item.activeVerification;
             let resultBoolean = true;
-            for (let ruleKey in rules) {
-                if (rules.hasOwnProperty(ruleKey) && this.verificationRules[ruleKey]) {
-                    let result = this.verificationRules[ruleKey]({
-                        arg: option,
-                        key: key,
-                        item: option.data[key],
-                        value: value,
-                        option: rules[ruleKey]
-                    }, this);
-                    if (!result) {
-                        if (resultBoolean) {
-                            resultBoolean = result;
+            if (activeVerification === false && !value) {
+            }
+            else {
+                for (let ruleKey in rules) {
+                    if (rules.hasOwnProperty(ruleKey) && this.verificationRules[ruleKey]) {
+                        let result = this.verificationRules[ruleKey]({
+                            arg: option,
+                            key: key,
+                            item: option.data[key],
+                            value: value,
+                            option: rules[ruleKey]
+                        }, this);
+                        if (!result) {
+                            if (resultBoolean) {
+                                resultBoolean = result;
+                            }
+                            // 添加校验规则
+                            if (resultRules === undefined)
+                                resultRules = [];
+                            resultRules.push({
+                                verification: result,
+                                item,
+                                ruleKey: ruleKey,
+                                tip: Verification.getTips(rules[ruleKey], item[option.option.tipKey])
+                            });
                         }
-                        // 添加校验规则
-                        if (resultRules === undefined)
-                            resultRules = [];
-                        resultRules.push({
-                            verification: result,
-                            item,
-                            ruleKey: ruleKey,
-                            tip: Verification.getTips(rules[ruleKey], item[option.option.tipKey])
-                        });
+                        // 查看是否继续执行
+                        if (!Verification.checkResultNext(result, option.option.mode))
+                            break;
                     }
-                    // 查看是否继续执行
-                    if (!Verification.checkResultNext(result, option.option.mode))
-                        break;
                 }
             }
             if (resultRules || resultBoolean) {

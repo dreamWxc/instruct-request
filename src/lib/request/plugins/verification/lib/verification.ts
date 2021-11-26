@@ -11,6 +11,8 @@ import {
 import verificationRules from './rules';
 import format from './format';
 
+import verification from '../index';
+
 
 class Verification <T=Record<string,any>,D=Record<string,any>>{
 
@@ -155,7 +157,7 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
         // 如果目前的key上锁停止向下执行
         if(option.look === key) return undefined;
 
-        let item = option.data[key];
+        let item:VerificationItem = option.data[key];
 
         // 获取校验规则
         let rules:VerificationRulesArg = Verification.createRules<T>(option.data[key],option.option);
@@ -166,40 +168,50 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
         if(rules) {
             let resultRules:Array<VerificationResult> = undefined;
             let value = this.getValue(option.data[key],option.data[key].value,'beforeFormat',Verification.getExportKey(option.data[key],key),option);
-            let resultBoolean = true;
             
-            for(let ruleKey in rules) {
+            let activeVerification = item.activeVerification === undefined ? verification.defaultOption.activeVerification : item.activeVerification;
+
+            let resultBoolean = true;
+            if(activeVerification === false && !value){
                 
-                if(rules.hasOwnProperty(ruleKey) && this.verificationRules[ruleKey]) {
-                    
-                    let result = this.verificationRules[ruleKey]({
-                        arg:option,
-                        key:key,
-                        item:option.data[key],
-                        value: value,
-                        option:rules[ruleKey]
-                    },this);
-
-                    if(!result) {
-                        if(resultBoolean){
-                            resultBoolean = result;
+            } else {
+                for(let ruleKey in rules) {
+                
+                    if(rules.hasOwnProperty(ruleKey) && this.verificationRules[ruleKey]) {
+                        
+                        let result = this.verificationRules[ruleKey]({
+                            arg:option,
+                            key:key,
+                            item:option.data[key],
+                            value: value,
+                            option:rules[ruleKey]
+                        },this);
+    
+                        if(!result) {
+                            if(resultBoolean){
+                                resultBoolean = result;
+                            }
+                            // 添加校验规则
+                            if(resultRules === undefined) resultRules = [];
+                            resultRules.push({
+                                verification:result,
+                                item,
+                                ruleKey:ruleKey as keyof VerificationRulesArg,
+                                tip: Verification.getTips(rules[ruleKey],item[option.option.tipKey])
+                            });
+    
                         }
-                        // 添加校验规则
-                        if(resultRules === undefined) resultRules = [];
-                        resultRules.push({
-                            verification:result,
-                            item,
-                            ruleKey:ruleKey as keyof VerificationRulesArg,
-                            tip: Verification.getTips(rules[ruleKey],item[option.option.tipKey])
-                        });
-
+    
+                        
+                        // 查看是否继续执行
+                        if(!Verification.checkResultNext(result,option.option.mode)) break;
                     }
-
-                    
-                    // 查看是否继续执行
-                    if(!Verification.checkResultNext(result,option.option.mode)) break;
                 }
             }
+            
+            
+            
+            
             
             if(resultRules || resultBoolean) {
                 result = {

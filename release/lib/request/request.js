@@ -198,7 +198,7 @@ export default class Request extends Instructions {
             });
             if (config) {
                 if (typeof data === 'function') {
-                    data = data();
+                    data = data(config.requestData);
                 }
                 PromiseExtend.all(data).then((response) => {
                     return this.setSuccessResponseData(response, config, true);

@@ -5,12 +5,10 @@ var ProgressBar = require('progress');
 
 let queue = [
     'rm -rf ./release/lib',
-    'rm -rf ./release/docs',
     'rm -rf ./release/README.md',
     'rm -rf ./release/index.ts',
     'rm -rf ./release/index.js',
     'cp -a src/ release/',
-    'cp -a docs/ release/docs/',
     'cp -r README.md release/README.md'
 ]
 

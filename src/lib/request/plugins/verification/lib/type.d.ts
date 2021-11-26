@@ -118,6 +118,8 @@ interface VerificationItemField<T=any> {
     key?:string,
     // 默认使用值
     value?:T,
+    // 是否为激活校验,默认为 true
+    activeVerification?:boolean,
     // 如果存在此key 将会采用 exportValue
     exportValue?:T,
     // 其他字段

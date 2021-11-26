@@ -249,7 +249,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
     }
 
     // 请求合并
-    all<T=warpT,T1=warpT,T2=warpT,T3=warpT,T4=warpT,T5=warpT,T6=warpT,T7=warpT>(data:Array<PromiseExtend<T | T1 | T2 | T3 | T4 | T5 | T6 | T7>> | (()=> Array<PromiseExtend<T | T1 | T2 | T3 | T4 | T5 | T6 | T7>>),requestConfig?:DefaultRequestConfigInstruction):PromiseExtend<Array<(T | T1 | T2 | T3 | T4 | T5 | T6 | T7) & ResponseExtendChain>,warpD> {
+    all<T=warpT,T1=warpT,T2=warpT,T3=warpT,T4=warpT,T5=warpT,T6=warpT,T7=warpT>(data:Array<PromiseExtend<T | T1 | T2 | T3 | T4 | T5 | T6 | T7>> | ((config:DefaultRequestConfigInstruction)=> Array<PromiseExtend<T | T1 | T2 | T3 | T4 | T5 | T6 | T7>>),requestConfig?:DefaultRequestConfigInstruction):PromiseExtend<Array<(T | T1 | T2 | T3 | T4 | T5 | T6 | T7) & ResponseExtendChain>,warpD> {
         let promiseExtend = new PromiseExtend<Array<(T | T1 | T2 | T3 | T4 | T5 | T6 | T7) & ResponseExtendChain>,warpD>((resolve,reject)=>{
 
             // 创建配置文件
@@ -260,7 +260,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
             if(config) {
 
                 if(typeof data === 'function') {
-                    data = data();
+                    data = data(config.requestData);
                 }
 
                 PromiseExtend.all(data).then((response)=>{

@@ -14,7 +14,19 @@ CachePlugin.register(request,{
 
 request.$request({
     url:'/codeBom/list',
-    cache:true
+    cache:true,
+    verification:{
+        data:[{
+            label:'name',
+            key:'name',
+            rules:{
+                empty:'请输入名称',
+                email:'邮箱格式错误'
+            },
+            value:'1',
+            activeVerification:false
+        }]
+    }
 }).then((data)=>{
     console.log(data.isCache,data);
 });

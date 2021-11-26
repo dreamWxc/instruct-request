@@ -17,7 +17,8 @@ export default {
     defaultOption:{
         mode:'default',
         tip:true,
-        tipKey:'placeholder'
+        tipKey:'placeholder',
+        activeVerification:true
     } as VerificationUseOption,
 
     // 校验对象
@@ -34,6 +35,7 @@ export default {
                 let resultOption:VerificationOption = Object.assign({},{
                     mode: option.mode,
                     useKey: option.useKey,
+                    activeVerification: option.activeVerification
                 },this.compatible(config.requestData.verification));
 
                 // 如果存在 useKey 触发

@@ -63,7 +63,7 @@ const config = {
                         let cacheData = this.cache.getItem(config.sign, resultOption);
                         try {
                             if (JSON.stringify(cacheData.data) === JSON.stringify(config.responseRestData)) {
-                                config.exit(undefined, 'none', true);
+                                return config.exit(undefined, 'none', true);
                             }
                         }
                         catch (e) {

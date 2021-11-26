@@ -10,7 +10,8 @@ export default {
     defaultOption: {
         mode: 'default',
         tip: true,
-        tipKey: 'placeholder'
+        tipKey: 'placeholder',
+        activeVerification: true
     },
     // 校验对象
     verification: undefined,
@@ -22,6 +23,7 @@ export default {
                 let resultOption = Object.assign({}, {
                     mode: option.mode,
                     useKey: option.useKey,
+                    activeVerification: option.activeVerification
                 }, this.compatible(config.requestData.verification));
                 // 如果存在 useKey 触发
                 if (resultOption.useKey && config.requestData[resultOption.useKey]) {
