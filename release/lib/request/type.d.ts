@@ -153,7 +153,7 @@ export interface InstructionExit<T extends InstructionExitParams = InstructionEx
 }
 
 interface RequestPluginRegister <T=any>{
-    (target:OutsideRequestObject,option?:T):void;
+    (target:OutsideRequestAnyObject,option?:T):void;
 }
 
 export interface RequestPlugin<T=any,D=any> {
@@ -206,3 +206,5 @@ export interface OutsideRequestObject<T=RequestResponse,I = Record<string, any>,
     $upload<childT=T,childD=D>(requestConfig:I & RequestConfigInstruction<childT,I,childD>): PromiseExtend<childT & ResponseExtendChain,childD>,
     extend<T extends keyof RequestExtend>(key:T):RequestExtend[T]
 }
+
+export type OutsideRequestAnyObject = OutsideRequestObject<any,any,any>;

@@ -10,7 +10,7 @@ import {
     RequestUploadInstructionFile,
     RequestUploadCache,
     SliceRequestExtend
-} from './type';
+} from './type.d';
 
 
 type SlicePlugin<T=any,I=any,D=any> = RequestPlugin<T,SlicePluginOption<T,I,D>>;
@@ -21,7 +21,7 @@ const config = {
     // 实例对象
     uploadSlice:undefined,
     // 向外界开放
-    extend:function(options?:RequestUploadCache){  
+    extend:function(options?:RequestUploadCache){
         return new UploadExtend(config.uploadSlice.cache,options)
     },
     // 默认的配置
@@ -81,7 +81,7 @@ const config = {
 
 export default config;
 
-export { 
+export {
     SlicePlugin,
     RequestUploadInstructionFile,
     SliceRequestExtend

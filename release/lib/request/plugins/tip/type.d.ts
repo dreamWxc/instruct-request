@@ -21,7 +21,7 @@ export interface TipSuccessCodeMessage extends TipMessage {
     // 成功的提示
     success?:string | TipGetMessage
 }
- 
+
 export interface TipGetMessage {
     (data:InstructionExitParams,codeType:keyof TipFailCodeMessage,code:number | any):string
 }

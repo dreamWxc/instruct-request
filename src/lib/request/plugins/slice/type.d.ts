@@ -1,4 +1,4 @@
-import { 
+import {
     ResponseSuccess,
     RequestConfigInstruction,
     ResponseData,
@@ -8,7 +8,7 @@ import {
 
 import {
     CacheStorageType,
-} from '../cache/type';
+} from '../cache/type.d';
 
 import {
     StorageSetOption

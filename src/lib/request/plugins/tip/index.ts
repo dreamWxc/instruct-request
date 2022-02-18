@@ -1,4 +1,4 @@
-import {TipPluginOption,TipOptionObject,TipMessage,TipGetMessage} from "./type";
+import {TipPluginOption,TipOptionObject,TipMessage,TipGetMessage} from "./type.d";
 
 import {RequestPlugin} from '../../type';
 

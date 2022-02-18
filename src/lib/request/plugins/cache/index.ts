@@ -1,5 +1,5 @@
 import { RequestPlugin,InstructionPostOption,Request } from '../../index';
-import { CacheOptionObject,CacheRequestExtend,CachePluginOption,CacheStorageType,CacheReturnResult,CacheExtendConfig,CacheResponseExtend } from './type';
+import { CacheOptionObject,CacheRequestExtend,CachePluginOption,CacheStorageType,CacheReturnResult,CacheExtendConfig,CacheResponseExtend } from './type.d';
 import Cache from './cache';
 
 import CacheDataExtend from './extend/cacheDataExtend';
@@ -86,7 +86,7 @@ const config = {
                         } catch(e) {
 
                         }
-                       
+
                     }
                     // 存入缓存
                     return (this.cache as Cache).setItem(config.sign, config.responseRestData, resultOption);
@@ -185,7 +185,7 @@ const config = {
         let isCache = option ? option.useCache : false;
         if (isCache) responseExtendChain.isCache = option ? option.useCache : false;
 
-        
+
         responseExtendChain.cache = function () {
             if (!config.cache) {
                 config.createCache();
@@ -208,7 +208,7 @@ const config = {
 
 export default config;
 
-export { 
+export {
     CacheOptionObject,
     CachePluginOption,
     CacheResponseExtend,

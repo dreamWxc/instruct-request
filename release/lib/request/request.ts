@@ -152,6 +152,8 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
                 introduces:Object.assign({},config.introduces),
                 sign:this.sign(config.requestData)
             });
+
+
             // 返回执行
             if (this.triggerInstruction<InstructionOption>(this.agentSearch(config,"front"),config)) {
                 return config;
@@ -457,7 +459,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
             // 获取 codeKey
             let codeKey = option.codeKey || this.getConfig('codeKey',config);
 
-            
+
             if(codeKey) {
                 // 返回执行结果
                 if (!responseCode || (responseCode as Array<any>).length <= 0) return true;
@@ -494,8 +496,8 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
                 config.responseResultData = response;
             }
         }
-        
-        
+
+
 
     }
 

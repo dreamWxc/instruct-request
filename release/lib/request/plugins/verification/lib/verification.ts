@@ -112,12 +112,13 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
             look:undefined,
             index:undefined
         };
-        
+
         Verification.map(triggerArg,(key,item,index)=>{
 
             triggerArg.index = index;
 
             let result:VerificationTriggerRetrun =  this.verificationTrigger<T>(key,triggerArg);
+
             // 获取校验结果
             if(result && result.result){
                 // 校验是否可以继续执行
@@ -128,9 +129,8 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
                 return Verification.checkVerificationtNext(result.result.verification,option.mode);
             }
         });
-    
-        let endResult = Verification.returnVerificationResult<T>(triggerArg);
 
+        let endResult = Verification.returnVerificationResult<T>(triggerArg);
        
         // 执行回调函数
         if(triggerArg.resultFail) {
@@ -208,11 +208,7 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
                     }
                 }
             }
-            
-            
-            
-            
-            
+        
             if(resultRules || resultBoolean) {
                 result = {
                     resultFails:resultRules || [],
@@ -268,7 +264,7 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
     // 根据规则返回校验结果
     static returnVerificationResult<T extends keyof VerificationMode = 'default'>(option:VerificationTriggerArg<T>):VerificationMode[T]{
 
-        switch(option.option.mode) {
+        switch(option.option.mode || 'default') {
             case 'end': return {
                 verification: option.resultFail ? false : true,
                 result:option.resultOrder.map((item)=> {

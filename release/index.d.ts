@@ -1,4 +1,4 @@
-import instructRequest,{RequestConfigInstruction,OutsideRequestObject}  from './lib/request/index.d';
+import instructRequest,{RequestConfigInstruction,OutsideRequestObject,RequestExtend,RequestPlugin}  from './lib/request/index.d';
 
 import Instructions from './lib/instructions/index';
 
@@ -30,6 +30,9 @@ export {
     Instructions,
     PromiseExtend,
     CachePlugin,
+    VerificationPlugin,
+    TipPlugin,
+    SlicePlugin,
     axios
 }
 
@@ -42,7 +45,9 @@ export {
     RequestUploadInstructionFile,
     TipPluginOption,
     TipOptionObject,
-    OutsideRequestObject as RequestClass
+    OutsideRequestObject as RequestClass,
+    RequestExtend,
+    RequestPlugin
 }
 
 export default instructRequest;

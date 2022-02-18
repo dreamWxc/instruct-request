@@ -13,7 +13,7 @@ import {AxiosRequestConfig} from 'axios';
 
 import { RequestPlugin,RequestMessageOption } from '../../index';
 
-import { OutsideRequestObject } from '../../type';
+import { OutsideRequestObject,OutsideRequestAnyObject } from '../../type';
 
 export interface VerificationExtendOption <T=Record<string,any>,D=Record<string,any>>{
     rules?:{[ key in keyof T]:VerificationTriggerFunction<T[key]>},
@@ -32,7 +32,7 @@ export interface VerificationUseOption<T=Record<string,any>,D=Record<string,any>
 }
 
 export interface VerificationPlugin extends RequestPlugin<any,VerificationUseOption>{
-    register:<T=Record<string,any>,D=Record<string,any>>(target:OutsideRequestObject,option?:VerificationUseOption<T,D>)=>Verification<T,D>
+    register:<T=Record<string,any>,D=Record<string,any>>(target:OutsideRequestAnyObject,option?:VerificationUseOption<T,D>)=>Verification<T,D>
 }
 
 export type VerificationUseKey = keyof AxiosRequestConfig;

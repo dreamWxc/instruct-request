@@ -1,4 +1,4 @@
-import {VerificationUseOption,VerificationOption,VerificationPlugin,VerificationUseKey,VerifictionRequestExtend,VerificationPluginOption} from "./type";
+import {VerificationUseOption,VerificationOption,VerificationPlugin,VerificationUseKey,VerifictionRequestExtend,VerificationPluginOption} from "./type.d";
 
 import Verification from './lib/verification';
 
@@ -31,7 +31,7 @@ export default {
         target.push({
             name:'verification',
             trigger:(config)=>{
-                
+
                 let resultOption:VerificationOption = Object.assign({},{
                     mode: option.mode,
                     useKey: option.useKey,
@@ -58,7 +58,7 @@ export default {
                     if(resultUseTip) {
                         target.message(typeof resultUseTip === 'string' ? resultUseTip :'info',config,{content:result.tip});
                     }
-                
+
                     return config.exit({
                         data:result,
                         status: 500,
@@ -107,7 +107,7 @@ export default {
         let type = typeof option;
         if (type === 'string') {
             return {
-                useKey: type as VerificationUseKey 
+                useKey: type as VerificationUseKey
             };
         } else {
             return option as VerificationOption;

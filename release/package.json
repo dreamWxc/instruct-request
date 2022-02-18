@@ -1,6 +1,6 @@
 {
   "name": "instruct-request-axios",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "指令请求器",
   "keywords": [
     "ajax",

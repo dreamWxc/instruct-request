@@ -211,7 +211,7 @@ class Verification {
     }
     // 根据规则返回校验结果
     static returnVerificationResult(option) {
-        switch (option.option.mode) {
+        switch (option.option.mode || 'default') {
             case 'end': return {
                 verification: option.resultFail ? false : true,
                 result: option.resultOrder.map((item) => {

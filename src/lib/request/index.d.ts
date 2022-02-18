@@ -1,5 +1,5 @@
 
-import { RequestConfigInstruction,OutsideRequestObject,RequestResponse } from './type.d';
+import { RequestConfigInstruction,OutsideRequestObject,RequestResponse,RequestExtend,RequestPlugin } from './type.d';
 import {AxiosError, AxiosStatic} from 'axios';
 
 interface instructRequest {
@@ -18,5 +18,7 @@ export default instructRequest;
 
 export {
     RequestConfigInstruction,
-    OutsideRequestObject
+    OutsideRequestObject,
+    RequestExtend,
+    RequestPlugin
 }
