@@ -1,6 +1,6 @@
 import {RequestPluginInstructionObject,ResponsePluginExtendChain,RequestPluginExtend} from './plugins/export';
 
-import {AxiosRequestConfig,AxiosError} from 'axios';
+import {AxiosRequestConfig,AxiosError} from '../request-config';
 
 import { InstructionType } from '../instructions';
 
@@ -19,7 +19,7 @@ export interface ResponseSuccess {
     customCheck?:(config:ResponseData,option:ResponseSuccess)=>boolean
 }
 
-export type RequestMessageOption = 
+export type RequestMessageOption =
 'info' |
 'error' |
 'success' |
@@ -70,7 +70,7 @@ interface RequestInstructionObject<T,I,D> extends ResponseSuccess{
 type RequestInstruction<T,I,D> = RequestInstructionObject<T,I,D> & Record<string, any>;
 
 interface RequestConfigInstruction<T=any,I=any,D=any> extends AxiosRequestConfig,RequestInstruction<T,I,D>,RequestPluginInstructionObject<T,I,D>{
-    
+
 }
 
 type DefaultRequestConfigInstruction = RequestConfigInstruction<any,any,any>

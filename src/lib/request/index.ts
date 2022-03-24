@@ -1,4 +1,4 @@
-import {AxiosError} from 'axios';
+import {AxiosError, AxiosStatic} from '../request-config';
 
 import Request from './request';
 
@@ -17,9 +17,9 @@ class OutsideRequest <T = RequestResponse,I = Record<string,any>,D = AxiosError<
 
     private _$request$_:Request<T,D>;
 
-    constructor(config:RequestConfigInstruction<T,I,D>) {
+    constructor(config:RequestConfigInstruction<T,I,D>,axios:AxiosStatic) {
         // @ts-ignore
-        this._$request$_ = new Request<T,D,I & RequestConfigInstruction<T,I,D>>(config);
+        this._$request$_ = new Request<T,D,I & RequestConfigInstruction<T,I,D>>(config,axios);
     }
 
     $all<T0=T,T1=T,T2=T,T3=T,T4=T,T5=T,T6=T,T7=T>(data:Array<PromiseExtend<T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7>> | ((config:DefaultRequestConfigInstruction)=> Array<PromiseExtend<T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7>>),requestConfig:I & RequestConfigInstruction<T,I,D>){
@@ -31,7 +31,7 @@ class OutsideRequest <T = RequestResponse,I = Record<string,any>,D = AxiosError<
     *   @param requestConfig 请求接口的配置参数 详细参考 RequestConfigInstruction
     * */
     $request<childT=T,childD=D>(requestConfig:I & RequestConfigInstruction<childT,I,childD>){
-        
+
         let agentTarget = this._$request$_.getAgentTarget<childT & ResponseExtendChain,I & RequestConfigInstruction<childT,I,childD>,childD>('$request');
         if(agentTarget) {
             return agentTarget(requestConfig);
@@ -42,7 +42,7 @@ class OutsideRequest <T = RequestResponse,I = Record<string,any>,D = AxiosError<
 
     private uploadSlice:UploadSlice<T,I,D>;
 
-    /* 
+    /*
     *   上传图片
     *   @param requestConfig 请求接口的配置参数 详细参考 RequestConfigInstruction
     */
@@ -75,8 +75,8 @@ class OutsideRequest <T = RequestResponse,I = Record<string,any>,D = AxiosError<
 export default {
 
     // 返回实例
-    create<T=RequestResponse,I = Record<string, any>,D = AxiosError<RequestConfigInstruction<T,I,AxiosError>> >(config:RequestConfigInstruction<T,I,D>):OutsideRequestObject<T,I,D>{
-        return new OutsideRequest<T,I,D>(config);
+    create<T=RequestResponse,I = Record<string, any>,D = AxiosError<RequestConfigInstruction<T,I,AxiosError>> >(config:RequestConfigInstruction<T,I,D>,axios:AxiosStatic):OutsideRequestObject<T,I,D>{
+        return new OutsideRequest<T,I,D>(config,axios);
     }
 
 }

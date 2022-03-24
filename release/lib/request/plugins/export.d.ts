@@ -1,5 +1,5 @@
 import { RequestResponse } from '../type';
-import { AxiosError } from 'axios';
+import { AxiosError } from '../../request-config';
 import {CachePluginOption,CacheOptionObject,CacheResponseExtend,CacheRequestExtend,CachePlugin} from './cache';
 import { VerificationPluginOption,VerificationOption,VerifictionRequestExtend,VerificationPlugin } from './verification';
 import { TipPluginOption,TipOptionObject,TipPlugin } from './tip';

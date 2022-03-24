@@ -4,7 +4,6 @@ import Instructions from './lib/instructions/index';
 
 import PromiseExtend from "./lib/extend/ProsmiseExtend";
 
-import axios from 'axios';
 
 import {
     CachePlugin,
@@ -32,8 +31,7 @@ export {
     CachePlugin,
     VerificationPlugin,
     TipPlugin,
-    SlicePlugin,
-    axios
+    SlicePlugin
 }
 
 export {

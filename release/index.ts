@@ -1,6 +1,4 @@
-import RequestAxios  from "./lib/request";
-
-import axios from 'axios';
+import Request  from "./lib/request";
 
 import Instructions from './lib/instructions';
 
@@ -16,11 +14,10 @@ import SlicePlugin from './lib/request/plugins/slice';
 export {
     Instructions,
     PromiseExtend,
-    axios,
     CachePlugin,
     VerificationPlugin,
     TipPlugin,
     SlicePlugin
 }
 
-export default RequestAxios;
+export default Request;

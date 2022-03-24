@@ -1,4 +1,5 @@
 import { SessionLocal, Memory } from './control/index';
+import cacheGlobal from "./global";
 export default class Cache {
     storageKey;
     constructor(storageKey) {
@@ -14,15 +15,15 @@ export default class Cache {
         }
         if (!this.examples[key]) {
             // 兼容对象
-            if (!window && key !== 'memory' || window && !window.localStorage && key === 'local' || window && !window.sessionStorage && key === 'session') {
+            if (key !== 'memory' && !cacheGlobal.localStorage && key === 'local' || !cacheGlobal.sessionStorage && key === 'session') {
                 key = 'memory';
             }
             switch (key) {
                 case 'local':
-                    this.examples[key] = new SessionLocal(window.localStorage, this.storageKey);
+                    this.examples[key] = new SessionLocal(cacheGlobal.localStorage, this.storageKey);
                     break;
                 case 'session':
-                    this.examples[key] = new SessionLocal(window.sessionStorage, this.storageKey);
+                    this.examples[key] = new SessionLocal(cacheGlobal.sessionStorage, this.storageKey);
                     break;
                 default: this.examples[key] = new Memory();
             }

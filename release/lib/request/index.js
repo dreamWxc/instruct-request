@@ -2,9 +2,9 @@ import Request from './request';
 export { Request };
 class OutsideRequest {
     _$request$_;
-    constructor(config) {
+    constructor(config, axios) {
         // @ts-ignore
-        this._$request$_ = new Request(config);
+        this._$request$_ = new Request(config, axios);
     }
     $all(data, requestConfig) {
         return this._$request$_.all(data, requestConfig);
@@ -52,7 +52,7 @@ class OutsideRequest {
 }
 export default {
     // 返回实例
-    create(config) {
-        return new OutsideRequest(config);
+    create(config, axios) {
+        return new OutsideRequest(config, axios);
     }
 };

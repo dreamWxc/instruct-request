@@ -1,6 +1,7 @@
 import CacheDataExtend from './extend/cacheDataExtend';
 import CacheExtend from './extend/cacheExtend';
 import Single from './single';
+import cacheGlobal from "./global";
 const config = {
     // 扩展名称
     extendName: 'cache',
@@ -30,6 +31,8 @@ const config = {
     install(target, option) {
         // 创建配置
         option = this.createConfig(option, target);
+        cacheGlobal.localStorage = option.localStorage;
+        cacheGlobal.sessionStorage = option.sessionStorage;
         // 插入 前置 指令
         target.push({
             name: 'cache',

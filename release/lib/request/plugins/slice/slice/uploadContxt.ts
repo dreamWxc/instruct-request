@@ -7,9 +7,12 @@ import Cache from '../../cache/cache';
 
 import slicePlugin from '../index';
 
-import axios,{CancelTokenSource} from 'axios';
+import exampleConfig from '../../../config/config';
 
-const CancelToken = axios.CancelToken;
+import {
+    CancelTokenSource
+} from '../../../../request-config';
+
 
 export default class UploadContxt implements RequestContxtParams{
 
@@ -52,12 +55,14 @@ export default class UploadContxt implements RequestContxtParams{
 
     constructor(data?:{[key in keyof RequestContxtParams]?:RequestContxtParams[key]},protected resultCache?:Cache){
         this.setParams(data);
-        this.cancelToken = CancelToken.source();
+        if (exampleConfig.example && exampleConfig.example.CancelToken) {
+            this.cancelToken = exampleConfig.example.CancelToken.source();
+        }
     }
 
     // 获取请求的 cancelToken
     getCancelToekn(){
-        return this.cancelToken.token;
+        return this.cancelToken && this.cancelToken.token;
     }
 
     // 退出
@@ -68,7 +73,9 @@ export default class UploadContxt implements RequestContxtParams{
         this.exit = true;
         this.over();
         if(this.cancelToken) this.cancelToken.cancel(message || 'slice cancel');
-        this.cancelToken = CancelToken.source();
+        if (exampleConfig.example && exampleConfig.example.CancelToken) {
+            this.cancelToken = exampleConfig.example.CancelToken.source();
+        }
         return remove && this.removeStorage(this.unique,this.resultCache);
     }
 
@@ -91,7 +98,7 @@ export default class UploadContxt implements RequestContxtParams{
             }
         }
         if(this.surplus) {
-            // 存储 
+            // 存储
             this._surplus = [...this.surplus];
         }
     }
@@ -110,7 +117,7 @@ export default class UploadContxt implements RequestContxtParams{
         } else {
             return console.error('no running upload');
         }
-        
+
     }
 
     // 继续
@@ -195,7 +202,7 @@ export default class UploadContxt implements RequestContxtParams{
         if(this.cache) {
             return cache.removeItem(hash,this.cache);
         }
-        
+
     }
 
 }

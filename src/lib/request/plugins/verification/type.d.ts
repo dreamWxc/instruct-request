@@ -9,7 +9,7 @@ import {
 
 import Verification from './lib/verification';
 
-import {AxiosRequestConfig} from 'axios';
+import {AxiosRequestConfig} from '../../../request-config';
 
 import { RequestPlugin,RequestMessageOption } from '../../index';
 
@@ -42,7 +42,7 @@ export interface VerificationOption<T extends keyof VerificationMode = keyof Ver
     mode?: T,
     // 直接使用 已有字段
     useKey?:VerificationUseKey,
-    // 是否提示 
+    // 是否提示
     tip?: boolean | RequestMessageOption | ((result:VerificationResult)=> RequestMessageOption | boolean)
 }
 

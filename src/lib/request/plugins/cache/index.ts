@@ -11,6 +11,8 @@ import Single from './single';
 
 type CachePlugin = RequestPlugin<CacheExtendConfig,CacheOptionObject>;
 
+import cacheGlobal from "./global";
+
 const config = {
     // 扩展名称
     extendName:'cache',
@@ -41,6 +43,9 @@ const config = {
     install(target:Request,option?:CacheOptionObject){
         // 创建配置
         option = this.createConfig(option,target);
+
+        cacheGlobal.localStorage = option.localStorage;
+        cacheGlobal.sessionStorage = option.sessionStorage;
 
         // 插入 前置 指令
         target.push({

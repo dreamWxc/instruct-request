@@ -1,4 +1,3 @@
-import { default as axios } from 'axios';
 import Instructions from '../instructions/index';
 import SparkMD5 from "spark-md5";
 import PromiseExtend from "../extend/ProsmiseExtend";
@@ -6,6 +5,7 @@ let signObject = {};
 ['url', 'data', 'headers', 'method', 'responseCode', 'codeKey', 'rest', 'params', 'responseType', 'xsrfCookieName', 'xsrfHeaderName', 'maxContentLength', 'maxBodyLength', 'maxRedirects', 'socketPath', 'httpAgent', 'httpsAgent', 'cancelToken', 'baseURL', 'auth', 'timeoutErrorMessage'].map((item) => {
     signObject[item] = 1;
 });
+import ExampleConfig from './config/config';
 export default class Request extends Instructions {
     defaultConfig = {
         responseCode: [200],
@@ -31,7 +31,7 @@ export default class Request extends Instructions {
     // 接口请求器
     $request;
     // 创建配置文件
-    constructor(config) {
+    constructor(config, request) {
         super();
         // 创建配置文件
         if (config) {
@@ -42,8 +42,9 @@ export default class Request extends Instructions {
             // @ts-ignore
             config = Object.assign({}, this.defaultConfig);
         }
+        ExampleConfig.example = request;
         // 创建请求对象
-        this.$request = axios.create(config);
+        this.$request = request.create(config);
         // 存储配置文件
         this.config = config;
     }

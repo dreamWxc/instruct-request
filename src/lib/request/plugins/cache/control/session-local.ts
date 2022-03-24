@@ -3,12 +3,15 @@ import Memory from "./memory";
 import encryption from '../../../utils/encryption/encryption';
 import {CacheStorageOption, StorageSetOption} from "./control";
 
+import {
+    CacheStorageExample
+} from '../type.d';
 
 export default class SessionLocal extends Memory {
 
     private key:string = 'X19yZXF1ZXN0X2NhY2hlX2tleV9f';
 
-    constructor(protected example:Storage,storageKey?:string) {
+    constructor(protected example:CacheStorageExample,storageKey?:string) {
         super();
 
         if(storageKey) {

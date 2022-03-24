@@ -39,6 +39,35 @@ interface CacheWhereTrigger {
     (config:InstructionOption):boolean
 }
 
+export interface CacheStorageExample {
+    readonly length?: number;
+    /**
+     * Removes all key/value pairs, if there are any.
+     *
+     * Dispatches a storage event on Window objects holding an equivalent Storage object.
+     */
+    clear?:()=> void;
+    /** Returns the current value associated with the given key, or null if the given key does not exist. */
+    getItem(key: string): string | null;
+    /** Returns the name of the nth key, or null if n is greater than or equal to the number of key/value pairs. */
+    key?:(index: number)=> string | null;
+    /**
+     * Removes the key/value pair with the given key, if a key/value pair with the given key exists.
+     *
+     * Dispatches a storage event on Window objects holding an equivalent Storage object.
+     */
+    removeItem(key: string): void;
+    /**
+     * Sets the value of the pair identified by key to value, creating a new key/value pair if none existed for key previously.
+     *
+     * Throws a "QuotaExceededError" DOMException exception if the new value couldn't be set. (Setting could fail if, e.g., the user has disabled storage for the site, or if the quota has been exceeded.)
+     *
+     * Dispatches a storage event on Window objects holding an equivalent Storage object.
+     */
+    setItem(key: string, value: string): void;
+    [name: string]: any;
+}
+
 export interface CacheOptionObject extends ResponseSuccess,StorageSetOption {
     // 是否更新，如果处于更新将会 继续去执行请求，并优先进行设置缓存 如果指定 where 则会优先执行 where
     update?:boolean | CacheUpdateTrigger;
@@ -55,7 +84,7 @@ export interface CacheOptionObject extends ResponseSuccess,StorageSetOption {
     // 获取到缓存后的处理 返回值将作为新的数据返回出去
     handle?:(cache:CacheReturnResult)=> any;
     // 如果配置一样是否重复触发
-    repeatNext?:boolean
+    repeatNext?:boolean;
     // 组id 可以通过组id进行删除多个缓存
     // groupId?:string,
     /*
@@ -64,6 +93,8 @@ export interface CacheOptionObject extends ResponseSuccess,StorageSetOption {
     *   使用id操作缓存 sign 会被自动映射
     * */
     // id?:string
+    sessionStorage?:CacheStorageExample,
+    localStorage?:CacheStorageExample
 }
 
 export interface CacheReturnResult {

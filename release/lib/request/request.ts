@@ -1,4 +1,4 @@
-import {AxiosError, AxiosInstance, default as axios} from 'axios';
+import {AxiosError, AxiosInstance, AxiosStatic} from '../request-config';
 
 import {
     RequestConfigInstruction,
@@ -35,6 +35,8 @@ let signObject = {};
     signObject[item] = 1;
 });
 
+import ExampleConfig from './config/config';
+
 export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultRequestConfigInstruction>,warpE extends DefaultRequestConfigInstruction=DefaultRequestConfigInstruction> extends Instructions{
 
     protected defaultConfig:RequestConfigInstruction<warpT,warpD,warpE>= {
@@ -69,7 +71,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
     public $request:AxiosInstance;
 
     // 创建配置文件
-    constructor(config:RequestConfigInstruction<warpT,warpE,warpD>) {
+    constructor(config:RequestConfigInstruction<warpT,warpE,warpD>,request:AxiosStatic) {
         super();
         // 创建配置文件
         if (config) {
@@ -79,8 +81,10 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
             // @ts-ignore
             config = Object.assign({},this.defaultConfig);
         }
+
+        ExampleConfig.example = request;
         // 创建请求对象
-        this.$request = axios.create(config);
+        this.$request = request.create(config);
         // 存储配置文件
         this.config = config;
     }

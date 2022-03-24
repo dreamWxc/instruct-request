@@ -1,11 +1,13 @@
 import Instruction,{VerificationPlugin,CachePlugin} from "./index";
 
+import axios from 'axios';
+
 const request = Instruction.create<{
     name:string
 }>({
     baseURL:'http://atest.honorjiahua.com:56462',
     method:'POST'
-});
+},axios);
 
 const verification = VerificationPlugin.register(request);
 
@@ -58,7 +60,9 @@ request.$use({
 VerificationPlugin.register(request);
 
 CachePlugin.register(request,{
-    storage:'local'
+    storage:'local',
+    sessionStorage:window.sessionStorage,
+    localStorage:window.localStorage
 });
 
 

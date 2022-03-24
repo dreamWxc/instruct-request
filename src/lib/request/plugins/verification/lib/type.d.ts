@@ -4,7 +4,7 @@ import {
 
 import Verification from './verification';
 
-import {AxiosRequestConfig} from 'axios';
+import {AxiosRequestConfig} from '../../../../request-config';
 
 type VerificationStringRules =
     'empty' |
@@ -96,7 +96,7 @@ export interface VerificationPresetFormatData {
     trim:void
 }
 
-// type VerificationPresetFormatData = 
+// type VerificationPresetFormatData =
 // 'join'|
 // 'trim';
 
@@ -128,7 +128,7 @@ interface VerificationItemField<T=any> {
 
 interface VerificationItem<T=any> extends VerificationItemField<T>{
     // 校验规则 不提供则不进行校验直接取值
-    rules?:string | VerificationRulesArg, 
+    rules?:string | VerificationRulesArg,
     // 校验后 格式化输出 允许同时格式化其他模块，但不建议这么做
     format?:VerificationFormat | VerificationPresetFormat | VerificationPresetFormatOption<VerificationPresetFormat>,
     // 校验前
@@ -212,7 +212,7 @@ type VerificationOutsideFormatOption<D> = {
     option: D[keyof D]
 }
 
-type VerificationFormatParams<D> = VerificationPresetFormat 
+type VerificationFormatParams<D> = VerificationPresetFormat
 
 // 提示
 export interface VerificationItemTip<T=Record<string,any>,D=Record<string,any>> extends VerificationItemField{

@@ -1,6 +1,5 @@
 import slicePlugin from '../index';
-import axios from 'axios';
-const CancelToken = axios.CancelToken;
+import exampleConfig from '../../../config/config';
 export default class UploadContxt {
     resultCache;
     // 成功的数量
@@ -40,11 +39,13 @@ export default class UploadContxt {
     constructor(data, resultCache) {
         this.resultCache = resultCache;
         this.setParams(data);
-        this.cancelToken = CancelToken.source();
+        if (exampleConfig.example && exampleConfig.example.CancelToken) {
+            this.cancelToken = exampleConfig.example.CancelToken.source();
+        }
     }
     // 获取请求的 cancelToken
     getCancelToekn() {
-        return this.cancelToken.token;
+        return this.cancelToken && this.cancelToken.token;
     }
     // 退出
     exit = false;
@@ -54,7 +55,9 @@ export default class UploadContxt {
         this.over();
         if (this.cancelToken)
             this.cancelToken.cancel(message || 'slice cancel');
-        this.cancelToken = CancelToken.source();
+        if (exampleConfig.example && exampleConfig.example.CancelToken) {
+            this.cancelToken = exampleConfig.example.CancelToken.source();
+        }
         return remove && this.removeStorage(this.unique, this.resultCache);
     }
     clear() {
@@ -74,7 +77,7 @@ export default class UploadContxt {
             }
         }
         if (this.surplus) {
-            // 存储 
+            // 存储
             this._surplus = [...this.surplus];
         }
     }

@@ -13,7 +13,7 @@ import {
 import {
     StorageSetOption
 } from '../cache/control/control';
-import { AxiosError } from 'axios';
+import { AxiosError } from '../../../request-config';
 import UploadContxt from './slice/uploadContxt';
 
 export {
