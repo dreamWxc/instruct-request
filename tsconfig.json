@@ -1,44 +1,15 @@
 {
-  "compilerOptions": {
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "module": "CommonJS",
-    "target": "ES5",
-    "allowJs": false,
-    "experimentalDecorators": true,
-    "noImplicitThis": true,
-    "noImplicitReturns": true,
-    "alwaysStrict": false,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "strict": true,
-    "removeComments": true,
-    "pretty": true,
-    "skipLibCheck": true,
-    "strictPropertyInitialization": false,
-    "baseUrl": ".",
-    "lib": [
-      "es6",
-      "es2018",
-      "es2015.proxy"
-    ],
-    "typeRoots": [
-      "./typings",
-      "./miniprogram/types",
-      "./miniprogram/components/*",
-      "./miniprogram/utils/*",
-      "./miniprogram/extend",
-      "./miniprogram/store/*"
-    ]
-  },
-  "include": [
-    "./**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "./miniprogram/utils/encryption/*"
-  ]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "esnext",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "noImplicitAny": false,
+        "noUnusedParameters": true,
+        "sourceMap": false,
+        "baseUrl": "./"
+    },
+    "include": ["src/**/*.ts","src/*.ts"],
+    "exclude": ["node_modules"],
 }
