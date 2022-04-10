@@ -1,4 +1,5 @@
 import config from '../request/plugins/cache';
+import platforms from "./platforms";
 export default class PromiseExtend extends Promise {
     static all(data) {
         return new PromiseExtend(function (relosve, reject) {
@@ -81,10 +82,11 @@ export default class PromiseExtend extends Promise {
     constructor(executor) {
         super(function () { });
         if (!executor) {
+            // @ts-ignore
             console.error('no trigger Function,this arg is', executor, 'but need typeof is Function');
         }
         else {
-            this.triggerTimeCallback = setTimeout(() => {
+            this.triggerTimeCallback = platforms.setTimeout(() => {
                 return executor(this.resolve.bind(this), this.reject.bind(this));
             }, 0);
         }
@@ -144,7 +146,7 @@ export default class PromiseExtend extends Promise {
     // 完成
     done() {
         // 清除计数器操作
-        clearTimeout(this.triggerTimeCallback);
+        platforms.clearTimeout(this.triggerTimeCallback);
         // 清空所有回调
         ['resolves', 'rejects', 'finallys'].map((item) => {
             this[item] = undefined;

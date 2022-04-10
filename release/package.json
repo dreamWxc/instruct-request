@@ -1,10 +1,11 @@
 {
   "name": "instruct-request",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "指令请求器",
   "keywords": [
-    "ajax",
-    "指令"
+    "接口指令",
+    "接口请求",
+    "instruct"
   ],
   "repository":"https://github.com/dreamWxc/instruct-request-axios",
   "bugs": {

@@ -1,3 +1,4 @@
+import platforms from "../extend/platforms";
 import Instructions from '../instructions/index';
 import SparkMD5 from "spark-md5";
 import PromiseExtend from "../extend/ProsmiseExtend";
@@ -82,7 +83,7 @@ export default class Request extends Instructions {
             if (!exit.next)
                 return;
             if (status === "none") {
-                value && console.info('request exit:', value);
+                value && platforms.info('request exit:', value);
                 end = true;
             }
             let trigger = exit.triggers[status];
@@ -223,6 +224,7 @@ export default class Request extends Instructions {
     }
     // 请求
     request(requestConfig) {
+        // @ts-ignore
         let promiseExtend = new PromiseExtend((resolve, reject) => {
             // 创建配置文件
             let config = this.createFront(requestConfig, {
@@ -251,6 +253,7 @@ export default class Request extends Instructions {
     }
     // 上传文件
     upload(requestConfig) {
+        // @ts-ignore
         let promiseExtend = new PromiseExtend((resolve, reject) => {
             // 创建配置文件
             let config = this.createFront(requestConfig, {
@@ -262,6 +265,7 @@ export default class Request extends Instructions {
                     ...requestConfig,
                     data: function () {
                         if (requestConfig.data) {
+                            // @ts-ignore
                             let formData = new FormData();
                             for (let key in requestConfig.data) {
                                 if (requestConfig.data.hasOwnProperty(key)) {
@@ -302,7 +306,7 @@ export default class Request extends Instructions {
     // 获取代表
     getAgentTarget(name) {
         if (!this.agentData)
-            return;
+            return undefined;
         return this.agentData[name];
     }
     // 代理

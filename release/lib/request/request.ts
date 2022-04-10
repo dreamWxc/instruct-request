@@ -19,6 +19,8 @@ import {
     ResponseExtendChain
 } from './type.d';
 
+import platforms from "../extend/platforms";
+
 import Instructions, {
     InstructionType,
     InstructionConfigObject,
@@ -122,7 +124,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
 
             if (!exit.next) return;
             if (status === "none") {
-                value && console.info('request exit:', value);
+                value && platforms.info('request exit:', value);
                 end = true;
             }
             let trigger = exit.triggers[status];
@@ -231,7 +233,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
 
         let responseData = config.responseResultData;
 
-        let ResponseData = function (obj:any,isObject:boolean) {
+        let ResponseData = function (this:Record<string, any>,obj:any,isObject:boolean) {
             if (isObject) {
                 for (let key in obj) {
                     if (obj.hasOwnProperty(key)) {
@@ -295,7 +297,8 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
     // 请求
     request<T=warpT,D=warpD>(requestConfig:DefaultRequestConfigInstruction):PromiseExtend<T,D>{
 
-        let promiseExtend = new PromiseExtend<T,D>( (resolve, reject)=> {
+        // @ts-ignore
+        let promiseExtend = new PromiseExtend<T,D>((resolve,reject)=>{
 
             // 创建配置文件
             let config = this.createFront(requestConfig,{
@@ -328,6 +331,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
     // 上传文件
     upload<T=warpT,D=warpD>(requestConfig:DefaultRequestConfigInstruction):PromiseExtend<T,D>{
 
+        // @ts-ignore
         let promiseExtend = new PromiseExtend<T,D>( (resolve, reject)=> {
 
             // 创建配置文件
@@ -337,12 +341,11 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
             }) as InstructionPostOption;
 
             if (config) {
-
-
-                return (this.$request.upload ? this.$request.upload : this.$request)({
+                return this.$request({
                     ...requestConfig,
                     data:function() {
-                        if(requestConfig.toFormData && requestConfig.data) {
+                        if(requestConfig.data) {
+                            // @ts-ignore
                             let formData = new FormData();
                             for(let key in requestConfig.data) {
                                 if(requestConfig.data.hasOwnProperty(key)) {
@@ -351,7 +354,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
                             }
                             return formData;
                         } else {
-                            return requestConfig.data;
+                            return undefined;
                         }
                     }(),
                     headers:{
@@ -383,7 +386,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
 
     // 获取代表
     getAgentTarget<T,I,D>(name:ReuqestAgentTypeName):RequestAgentFunction<T,I,D>{
-        if(!this.agentData) return;
+        if(!this.agentData) return undefined;
         return this.agentData[name];
     }
 

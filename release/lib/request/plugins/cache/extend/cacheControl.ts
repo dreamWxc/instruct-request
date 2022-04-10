@@ -1,9 +1,11 @@
 import {
     CacheControlClass,
-    CacheExtendParams, CacheExtendWhereTrigger,CacheExtendTrigger
+    CacheExtendParams, CacheExtendWhereTrigger
 } from './type';
 import {CacheStorageType} from "../type";
 import Cache from "../cache";
+
+import platforms from "../../../../extend/platforms";
 
 export default class CacheControl implements CacheControlClass {
 
@@ -45,7 +47,8 @@ export default class CacheControl implements CacheControlClass {
     asyncOptionUpdateTime:any;
 
     // 修改参数
-    addRollBack<T extends keyof CacheExtendParams = keyof CacheExtendParams>(key?:T,value?:CacheExtendParams[T]){
+    // @ts-ignore
+    addRollBack<T extends keyof CacheExtendParams = keyof CacheExtendParams>(key?:T,value?:CacheExtendParams[T]):this{
         // 如果回滚的快照 不存在触发
         if (key === null && value === null) return this;
 
@@ -61,11 +64,11 @@ export default class CacheControl implements CacheControlClass {
                 this.imageOptions[key] = value;
             }
             // 清楚异步执行
-            clearTimeout(this.asyncOptionUpdateTime);
+            platforms.clearTimeout(this.asyncOptionUpdateTime);
             // 设置当前正在进行异步操作
             this.optionUpdate = true;
             // 获取异步执行
-            this.asyncOptionUpdateTime = setTimeout(()=> this.completeRollBack());
+            this.asyncOptionUpdateTime = platforms.setTimeout(()=> this.completeRollBack());
         }
 
         return this;
@@ -75,7 +78,7 @@ export default class CacheControl implements CacheControlClass {
     completeRollBack(){
         if (!this.optionUpdate) return;
         // 清楚异步执行
-        clearTimeout(this.asyncOptionUpdateTime);
+        platforms.clearTimeout(this.asyncOptionUpdateTime);
         // 关闭异步操作通道
         this.optionUpdate = false;
         if (this.snapshotOptions === null) {
@@ -113,7 +116,7 @@ export default class CacheControl implements CacheControlClass {
     }
 
     // 触发替换
-    triggerReplace(trigger,data:CacheExtendParams) {
+    triggerReplace(trigger,data:CacheExtendParams):any{
 
         if (typeof trigger === 'function') {
             for (let key in data) {

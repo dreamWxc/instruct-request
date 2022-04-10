@@ -74,6 +74,7 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
                         unique = useUnqiue;
                         return false;
                     }
+                    return undefined;
                 },option.index + 1);
             }
         } else if(index !== undefined){
@@ -94,6 +95,8 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
 
             return result.result ? result.result : undefined;
         }
+
+        return undefined;
 
     }
 
@@ -131,7 +134,7 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
         });
 
         let endResult = Verification.returnVerificationResult<T>(triggerArg);
-       
+
         // 执行回调函数
         if(triggerArg.resultFail) {
             triggerArg.option.cache && triggerArg.option.cache(endResult);
@@ -139,7 +142,7 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
             if(triggerArg.option.complete) {
                let result = triggerArg.option.complete(endResult);
                if(result) endResult = result;
-            }            
+            }
         }
 
         return endResult;
@@ -148,7 +151,7 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
 
     // 校验一条
     protected verificationTrigger<T extends keyof VerificationMode = 'default'>(key:number|string,option:VerificationTriggerArg<T>):VerificationTriggerRetrun{
-    
+
         // 如果被校验过了 直接返回
         if(option.hasResult && option.hasResult[key]) {
             return option.result[option.hasResult[key]];
@@ -161,24 +164,24 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
 
         // 获取校验规则
         let rules:VerificationRulesArg = Verification.createRules<T>(option.data[key],option.option);
-        
+
         let result = undefined;
 
         // 如果存在校验规则触发
         if(rules) {
             let resultRules:Array<VerificationResult> = undefined;
             let value = this.getValue(option.data[key],option.data[key].value,'beforeFormat',Verification.getExportKey(option.data[key],key),option);
-            
+
             let activeVerification = item.activeVerification === undefined ? verification.defaultOption.activeVerification : item.activeVerification;
 
             let resultBoolean = true;
             if(activeVerification === false && !value){
-                
+
             } else {
                 for(let ruleKey in rules) {
-                
+
                     if(rules.hasOwnProperty(ruleKey) && this.verificationRules[ruleKey]) {
-                        
+
                         let result = this.verificationRules[ruleKey]({
                             arg:option,
                             key:key,
@@ -186,7 +189,7 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
                             value: value,
                             option:rules[ruleKey]
                         },this);
-    
+
                         if(!result) {
                             if(resultBoolean){
                                 resultBoolean = result;
@@ -199,16 +202,16 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
                                 ruleKey:ruleKey as keyof VerificationRulesArg,
                                 tip: Verification.getTips(rules[ruleKey],item[option.option.tipKey])
                             });
-    
+
                         }
-    
-                        
+
+
                         // 查看是否继续执行
                         if(!Verification.checkResultNext(result,option.option.mode)) break;
                     }
                 }
             }
-        
+
             if(resultRules || resultBoolean) {
                 result = {
                     resultFails:resultRules || [],
@@ -224,7 +227,7 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
         // 执行保存相关内容
         Verification.preservation<T>(key,result,option);
         return result;
-        
+
 
     }
 
@@ -264,9 +267,9 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
     // 根据规则返回校验结果
     static returnVerificationResult<T extends keyof VerificationMode = 'default'>(option:VerificationTriggerArg<T>):VerificationMode[T]{
 
-        switch(option.option.mode || 'default') {
+        switch(option.option.mode) {
             case 'end': return {
-                verification: option.resultFail ? false : true,
+                verification: !option.resultFail,
                 result:option.resultOrder.map((item)=> {
                     return option.result[item].result;
                 }),
@@ -275,6 +278,8 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
             };
             case 'default': return option.resultFail ? option.resultFail[0].result : { verification:true,value:option.resultValues,item:undefined };
         }
+
+        return  undefined;
 
     }
 
@@ -324,27 +329,27 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
         if(result) {
             if(triggerArg.result === undefined) triggerArg.result = {};
             triggerArg.result[exportKey] = result;
-    
+
             // 增加排序
             if(triggerArg.resultOrder === undefined) triggerArg.resultOrder = [exportKey];
             else if(!triggerArg.resultOrder.includes(exportKey)) triggerArg.resultOrder.push(exportKey);
-    
+
             // 注入结果
             if(result.result){
 
                 if(result.result.verification) {
                     if(triggerArg.resultValues === undefined) triggerArg.resultValues = {};
-                
+
                     triggerArg.resultValues[exportKey] =result.result.value;
                 } else {
                     if(triggerArg.resultFail === undefined) triggerArg.resultFail = [result];
                     else triggerArg.resultFail.push(result);
                 }
-                
-                
+
+
             }
         }
-        
+
 
 
     }
@@ -360,6 +365,7 @@ class Verification <T=Record<string,any>,D=Record<string,any>>{
                 return item.rules;
             }
         }
+        return  undefined;
     }
 
     // 循环执行校验结果

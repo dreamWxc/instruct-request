@@ -34,7 +34,7 @@ export default class UploadExtend extends CacheDataExtend {
             return defaultValue;
         }
     }
-    // 获取所有缓存 
+    // 获取所有缓存
     getCaches(storage) {
         // 获取实例
         let example = this.cache.getExamples(this.getCacheParamsKey('storage', storage, 'memory'));
@@ -66,7 +66,7 @@ export default class UploadExtend extends CacheDataExtend {
     // 转变为进度
     transfSpeed(data) {
         if (!data)
-            return;
+            return undefined;
         // 获取成功的数量
         let successNumber = 0;
         if (data.success) {

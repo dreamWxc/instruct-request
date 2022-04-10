@@ -95,13 +95,13 @@ export default class Cache {
     }
 
     // 设置缓存
-    setItem(key:string,data:Response | Record<string, any>,option:CacheOptionObject) {
+    setItem(key:string,data:Record<string, any>,option:CacheOptionObject) {
         let example:CacheStorageControl = this.getExamples(option.storage);
         return example.setItem(key,data,option);
     }
 
     // 设置组缓存
-    setGroupItem(id:string,data:Response | Record<string, any>,option:CacheOptionObject){
+    setGroupItem(id:string,data:Record<string, any>,option:CacheOptionObject){
         let example:CacheStorageControl = this.getExamples(option.storage);
 
         return example.setGroup(id,data,option);

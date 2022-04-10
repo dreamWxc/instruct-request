@@ -1,5 +1,6 @@
 import Memory from "./memory";
 import encryption from '../../../utils/encryption/encryption';
+import platforms from "../../../../extend/platforms";
 export default class SessionLocal extends Memory {
     example;
     key = 'X19yZXF1ZXN0X2NhY2hlX2tleV9f';
@@ -56,20 +57,20 @@ export default class SessionLocal extends Memory {
             key = useId;
         super.setItem(key, value, option);
         if (this.timeObject)
-            clearTimeout(this.timeObject[key]);
+            platforms.clearTimeout(this.timeObject[key]);
         if (!this.timeObject)
             this.timeObject = {};
-        this.timeObject[key] = setTimeout(() => {
+        this.timeObject[key] = platforms.setTimeout(() => {
             this.data[key] && this.example.setItem(key, encryption.encode(JSON.stringify(this.data[key])));
         }, 0);
     }
     setOptionTime;
     // 设置缓存
     updateStorageOption() {
-        clearTimeout(this.setOptionTime);
-        this.setOptionTime = setTimeout(() => {
+        (this.setOptionTime);
+        this.setOptionTime = platforms.setTimeout(() => {
             if (this.updateExpire())
-                return clearTimeout(this.setOptionTime);
+                return platforms.clearTimeout(this.setOptionTime);
             if (this.storageOption) {
                 return this.example.setItem(this.key, encryption.encode(JSON.stringify(this.storageOption)));
             }

@@ -251,6 +251,7 @@ export default class Memory implements CacheStorageControl {
             return  useId;
         }
 
+        return  undefined;
 
     }
 

@@ -1,4 +1,5 @@
 import slicePlugin from '../index';
+import platforms from "../../../../extend/platforms";
 import exampleConfig from '../../../config/config';
 export default class UploadContxt {
     resultCache;
@@ -94,7 +95,7 @@ export default class UploadContxt {
             }
         }
         else {
-            return console.error('no running upload');
+            return platforms.error('no running upload');
         }
     }
     // 继续
@@ -106,7 +107,7 @@ export default class UploadContxt {
                 return slicePlugin.uploadSlice.triggerUpload(config, requestConfig, fileOption, this);
             }
             else {
-                return console.error('no running upload');
+                return platforms.error('no running upload');
             }
         }
     }

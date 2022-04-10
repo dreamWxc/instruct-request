@@ -1,4 +1,4 @@
-export default new function () {
+export default new function (this:Record<string, any>) {
 
   // private property
   let _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -81,6 +81,7 @@ export default new function () {
   let _utf8_decode = function (utftext) {
     var string = "";
     var i = 0;
+    // @ts-ignore
     let c,c1,c2,c3;
     c = c1 = c2 = 0;
     while ( i < utftext.length ) {

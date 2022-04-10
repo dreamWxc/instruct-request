@@ -1,3 +1,4 @@
+import platforms from "../../../extend/platforms";
 import PromiseExtend from "../../../extend/ProsmiseExtend";
 import SparkMD5 from 'spark-md5';
 import UploadContxt from './slice/uploadContxt';
@@ -9,7 +10,7 @@ export default class UploadSlice extends UploadExtend {
         this.request = request;
     }
     // 是否有可以执行
-    static jurisdiction = !!(FileReader && Blob);
+    static jurisdiction = !!(platforms.FileReader && platforms.Blob);
     // @ts-ignore
     blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
     // 触发upload
@@ -283,7 +284,7 @@ export default class UploadSlice extends UploadExtend {
             return fileOption.merge(response, uploadConfig);
         }
         else {
-            // 合并data 
+            // 合并data
             let replaceData = fileOption.merge.replaceData || fileOption.replaceData;
             if (replaceData) {
                 fileOption.merge.data = Object.assign({}, fileOption.merge.data, this.repleace({}, replaceData, uploadConfig, ['file']));
@@ -310,7 +311,7 @@ export default class UploadSlice extends UploadExtend {
         }
         // 注入进入running状态
         uploadContxt.running[index] = 0;
-        // 合并data 
+        // 合并data
         let replaceData = fileOption.replaceData;
         if (replaceData) {
             config.requestData.data = this.repleace(config.introduces.data, replaceData, resultUploadConfig);
@@ -377,7 +378,7 @@ export default class UploadSlice extends UploadExtend {
     }
     // 上传进度控制
     static onUploadProgress(progress, resultUploadConfig, uploadContxt, onUploadProgress) {
-        return setTimeout(function () {
+        return platforms.setTimeout(function () {
             if (progress && uploadContxt.running[resultUploadConfig.index] !== null) {
                 // 获取当前进度
                 if (!uploadContxt.success || !uploadContxt.success[resultUploadConfig.index]) {
@@ -456,7 +457,7 @@ export default class UploadSlice extends UploadExtend {
             }
             else {
                 if (UploadSlice.jurisdiction) {
-                    let fileReader = new FileReader();
+                    let fileReader = new platforms.FileReader();
                     let spark = new SparkMD5.ArrayBuffer();
                     let currentChunk = config.index;
                     fileReader.onload = function (e) {

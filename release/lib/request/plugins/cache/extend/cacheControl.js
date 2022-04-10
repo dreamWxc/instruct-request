@@ -1,3 +1,4 @@
+import platforms from "../../../../extend/platforms";
 export default class CacheControl {
     // 参数列表
     options;
@@ -31,6 +32,7 @@ export default class CacheControl {
     // 处于修改的异步对象
     asyncOptionUpdateTime;
     // 修改参数
+    // @ts-ignore
     addRollBack(key, value) {
         // 如果回滚的快照 不存在触发
         if (key === null && value === null)
@@ -48,11 +50,11 @@ export default class CacheControl {
                 this.imageOptions[key] = value;
             }
             // 清楚异步执行
-            clearTimeout(this.asyncOptionUpdateTime);
+            platforms.clearTimeout(this.asyncOptionUpdateTime);
             // 设置当前正在进行异步操作
             this.optionUpdate = true;
             // 获取异步执行
-            this.asyncOptionUpdateTime = setTimeout(() => this.completeRollBack());
+            this.asyncOptionUpdateTime = platforms.setTimeout(() => this.completeRollBack());
         }
         return this;
     }
@@ -61,7 +63,7 @@ export default class CacheControl {
         if (!this.optionUpdate)
             return;
         // 清楚异步执行
-        clearTimeout(this.asyncOptionUpdateTime);
+        platforms.clearTimeout(this.asyncOptionUpdateTime);
         // 关闭异步操作通道
         this.optionUpdate = false;
         if (this.snapshotOptions === null) {

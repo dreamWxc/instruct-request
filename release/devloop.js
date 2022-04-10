@@ -1,53 +1,71 @@
-"use strict";
-exports.__esModule = true;
-var index_1 = require("./index");
-// 创建请求对象
-var request = index_1["default"].create({
-    method: 'POST',
-    baseURL: 'http://192.168.2.67:8086/',
-    responseCode: [200],
-    codeKey: 'code',
-    message: {}
-});
-index_1.TipPlugin.register(request);
-// 注册插件
-index_1.CachePlugin.register(request, {
-    storage: 'local'
-});
-var verification = index_1.VerificationPlugin.register(request, {
-    rules: {
-        isMan: function () {
-            return true;
+import Instruction, { VerificationPlugin, CachePlugin } from "./index";
+import axios from 'axios';
+const request = Instruction.create({
+    baseURL: 'http://atest.honorjiahua.com:56462',
+    method: 'POST'
+}, axios);
+const verification = VerificationPlugin.register(request);
+request.$use({
+    extendName: 'mode',
+    defaultOption: {
+        'address': {
+            requestConfig: {
+                baseURL: 'https://apis.map.qq.com/',
+            },
+            mergeData: {
+                data: {
+                    key: '123'
+                }
+            }
         }
     },
-    formats: {
-        name: function (value, option) {
-            console.log(option);
-            return '123123-' + value;
-        }
+    install(target) {
+        target.push({
+            name: this.extendName,
+            trigger: (request) => {
+                let optionData = this.defaultOption[request.introduces.mode];
+                request.requestData = Object.assign({}, optionData.requestConfig, request.requestData);
+                console.log(request);
+                optionData.mergeData && Object.keys(optionData.mergeData).map((item) => {
+                    if (typeof optionData.mergeData[item] === 'object') {
+                        request.requestData[item] = Object.assign({}, optionData.mergeData[item], request.requestData[item]);
+                    }
+                    else {
+                        request.requestData[item] = request.requestData[item] === undefined ? optionData.mergeData[item] : request.requestData[item];
+                    }
+                });
+            },
+            where: (request) => !!this.defaultOption[request.introduces.mode],
+            triggerType: 'has',
+            type: "entry"
+        });
     },
-    tip: 'info'
+    register(request) {
+        return request.$use(this);
+    }
 });
-function toRequest() {
-    request.$request({
-        url: 'jhTrade/jhTradeList?current=1&size=200',
-        tip: true,
-        data: {
-            status: "WAIT_SELLER_SEND_GOODS",
-            checkStatus: 13
-        },
-        headers: {
-            token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MzYwNTM3NjksInVzZXJuYW1lIjoiYWRtaW4ifQ.AuTNg5RyiWOUS7J_k_iA1D83jVZQucEPK-dSFiiUv6w'
-        }
-    }).then(function (data) {
-        data.msg = '我是呗更新的缓存';
-        // data.cache()
-    });
-}
-setTimeout(function () {
-    toRequest();
-}, 5000);
-// request.extend('cache')().id('12').data(1).update();
-/*
-
-*/
+VerificationPlugin.register(request);
+CachePlugin.register(request, {
+    storage: 'local',
+    sessionStorage: window.sessionStorage,
+    localStorage: window.localStorage
+});
+request.$request({
+    url: '/codeBom/list',
+    mode: 'address',
+    cache: true,
+    // verification:{
+    //     data:[{
+    //         label:'name',
+    //         key:'name',
+    //         rules:{
+    //             empty:'请输入名称',
+    //             email:'邮箱格式错误'
+    //         },
+    //         value:'1',
+    //         activeVerification:false
+    //     }]
+    // }
+}).then((data) => {
+    console.log(data.isCache, data);
+});

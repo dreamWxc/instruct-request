@@ -39,7 +39,7 @@ export default class UploadExtend extends CacheDataExtend{
     // 获取参数
     getCacheParamsKey<T extends keyof RequestUploadCache>(key:T,value:RequestUploadCache[T],defaultValue:RequestUploadCache[T]){
 
-        if(value) return value; 
+        if(value) return value;
 
         if(this.cacheParams && this.cacheParams[key]) {
             return this.cacheParams[key];
@@ -48,7 +48,7 @@ export default class UploadExtend extends CacheDataExtend{
         }
     }
 
-    // 获取所有缓存 
+    // 获取所有缓存
     getCaches(storage?:CacheStorageType):Array<UploadExtendSpeedParams>{
         // 获取实例
         let example = this.cache.getExamples(this.getCacheParamsKey('storage',storage,'memory'));
@@ -83,10 +83,10 @@ export default class UploadExtend extends CacheDataExtend{
     getCachesGroupPromise(option?:RequestUploadCache):Promise<Array<UploadExtendSpeedParams>>{
         return new Promise((relove)=> relove(this.getCacheGroup(option)));
     }
-    
+
     // 转变为进度
     transfSpeed(data:RequestContxtParams):UploadExtendSpeedParams{
-        if(!data) return;
+        if(!data) return undefined;
         // 获取成功的数量
         let successNumber = 0;
         if(data.success) {

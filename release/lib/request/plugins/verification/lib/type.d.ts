@@ -51,7 +51,7 @@ export interface VerificationTriggerFunction<T> {
         arg:VerificationTriggerArg,
         key:string | number,
         value:any
-    },target:Verification):boolean
+    },target?:Verification):boolean
 }
 
 export type VerificationTrigger = {

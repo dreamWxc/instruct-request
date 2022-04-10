@@ -55,6 +55,7 @@ class Verification {
                         unique = useUnqiue;
                         return false;
                     }
+                    return undefined;
                 }, option.index + 1);
             }
         }
@@ -73,6 +74,7 @@ class Verification {
             let result = this.verificationTrigger(unique, option);
             return result.result ? result.result : undefined;
         }
+        return undefined;
     }
     // 校验
     verification(option) {
@@ -211,9 +213,9 @@ class Verification {
     }
     // 根据规则返回校验结果
     static returnVerificationResult(option) {
-        switch (option.option.mode || 'default') {
+        switch (option.option.mode) {
             case 'end': return {
-                verification: option.resultFail ? false : true,
+                verification: !option.resultFail,
                 result: option.resultOrder.map((item) => {
                     return option.result[item].result;
                 }),
@@ -222,6 +224,7 @@ class Verification {
             };
             case 'default': return option.resultFail ? option.resultFail[0].result : { verification: true, value: option.resultValues, item: undefined };
         }
+        return undefined;
     }
     // 根据校验规则，查看 是否继续执行rules 校验
     static checkVerificationtNext(result, mode) {
@@ -299,6 +302,7 @@ class Verification {
                 return item.rules;
             }
         }
+        return undefined;
     }
     // 循环执行校验结果
     static map(option, callback, initIndex = 0) {

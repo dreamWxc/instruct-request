@@ -22,6 +22,7 @@ class OutsideRequest {
             return this._$request$_.request(requestConfig);
         }
     }
+    // @ts-ignore
     uploadSlice;
     /*
     *   上传图片

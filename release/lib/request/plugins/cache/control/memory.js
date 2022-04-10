@@ -224,6 +224,7 @@ export default class Memory {
             }
             return useId;
         }
+        return undefined;
     }
     setItem(key, value, option) {
         if (this.data === undefined)

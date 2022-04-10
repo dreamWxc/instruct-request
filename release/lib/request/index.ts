@@ -40,6 +40,7 @@ class OutsideRequest <T = RequestResponse,I = Record<string,any>,D = AxiosError<
         }
     }
 
+    // @ts-ignore
     private uploadSlice:UploadSlice<T,I,D>;
 
     /*
@@ -75,7 +76,7 @@ class OutsideRequest <T = RequestResponse,I = Record<string,any>,D = AxiosError<
 export default {
 
     // 返回实例
-    create<T=RequestResponse,I = Record<string, any>,D = AxiosError<RequestConfigInstruction<T,I,AxiosError>> >(config:RequestConfigInstruction<T,I,D>,axios:AxiosStatic):OutsideRequestObject<T,I,D>{
+    create<T=RequestResponse,I = Record<string, any>,D = AxiosError<RequestConfigInstruction<T,I,AxiosError>> >(config:RequestConfigInstruction<T,I,D>,axios:AxiosStatic | any):OutsideRequestObject<T,I,D>{
         return new OutsideRequest<T,I,D>(config,axios);
     }
 
