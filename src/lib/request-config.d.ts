@@ -132,9 +132,10 @@ export interface CancelTokenSource {
 
 export interface AxiosInstance {
     (config: AxiosRequestConfig): AxiosPromise;
+    upload?:(config: AxiosRequestConfig)=>AxiosPromise
 }
 
-export interface AxiosStatic extends AxiosInstance {
+export interface AxiosStatic {
     create(config?: AxiosRequestConfig): AxiosInstance;
     Cancel?: CancelStatic;
     CancelToken?: CancelTokenStatic;

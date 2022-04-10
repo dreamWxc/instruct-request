@@ -1,9 +1,10 @@
-import { resolve } from 'path/posix';
 import config from '../request/plugins/cache';
 import {
     InterFacePromiseExtend,
     PromiseExtendCallback
 } from './ProsmiseExtend.d';
+
+import platforms from "./platforms";
 
 export default class PromiseExtend<T,D = unknown> extends Promise<T> implements InterFacePromiseExtend<T,D> {
 
@@ -99,9 +100,10 @@ export default class PromiseExtend<T,D = unknown> extends Promise<T> implements 
     constructor(executor:PromiseExtendCallback<T,D>){
         super(function(){});
         if(!executor) {
+            // @ts-ignore
             console.error('no trigger Function,this arg is',executor,'but need typeof is Function');
         } else {
-            this.triggerTimeCallback = setTimeout(()=>{
+            this.triggerTimeCallback = platforms.setTimeout(()=>{
                 return executor(
                     this.resolve.bind(this),
                     this.reject.bind(this),
@@ -176,7 +178,7 @@ export default class PromiseExtend<T,D = unknown> extends Promise<T> implements 
     // 完成
     done(){
         // 清除计数器操作
-        clearTimeout(this.triggerTimeCallback);
+        platforms.clearTimeout(this.triggerTimeCallback);
         // 清空所有回调
         ['resolves','rejects','finallys'].map((item)=>{
             this[item] = undefined;

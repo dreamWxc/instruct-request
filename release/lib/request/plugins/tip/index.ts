@@ -38,7 +38,7 @@ export default {
                     // 设置允许提示
                     if(useOption[tipType] !== false){
 
-                        let tip:string | TipGetMessage,useTipType,codeType:string,useCodeStatus:any;
+                        let tip:string | TipGetMessage='',useTipType,codeType:string='default',useCodeStatus:any;
                         /* 获取codeType */
                         if(config.status === 'success') {
 
@@ -52,11 +52,6 @@ export default {
                                 codeType = 'timeout'
                             }
                         }
-
-                        if(!codeType) {
-                            codeType = 'default';
-                        }
-                        /* 获取codeType */
 
                         /* 获取提示文本 */
                         let tipMessage = this.getConfig(tipType,useOption);
@@ -74,12 +69,10 @@ export default {
 
                                 if(typeof useOption.messageKey === 'function') {
                                     tip = useOption.messageKey(config.responseData,codeType,useCodeStatus);
-                                } else {
+                                } else if (useOption.messageKey){
                                     tip = config.responseRestData && config.responseRestData[useOption.messageKey] || ''
                                 }
 
-                            } else {
-                                tip = '';
                             }
                         }
 
@@ -164,7 +157,7 @@ export default {
         return Object.assign({},defaultOption,option);
     },
     // 获取配置
-    getConfig<T extends keyof TipOptionObject>(key: T,option):TipOptionObject[T]{
+    getConfig<T extends keyof TipOptionObject>(key: T,option:TipOptionObject):TipOptionObject[T]{
         if(typeof option[key] === 'boolean') {
             return this.defaultOption[key];
         } else {

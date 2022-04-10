@@ -61,12 +61,14 @@ export interface AxiosRequestConfig {
     headers?: any;
     params?: any;
     paramsSerializer?: (params: any) => string;
+    toFormData?:boolean,
     data?: any;
     timeout?: number;
     timeoutErrorMessage?: string;
     withCredentials?: boolean;
     adapter?: AxiosAdapter;
     auth?: AxiosBasicCredentials;
+    dataType?: ResponseType;
     responseType?: ResponseType;
     xsrfCookieName?: string;
     xsrfHeaderName?: string;
@@ -82,7 +84,8 @@ export interface AxiosRequestConfig {
     proxy?: AxiosProxyConfig | false;
     cancelToken?: CancelToken;
     decompress?: boolean;
-    transitional?: TransitionalOptions
+    transitional?: TransitionalOptions,
+    [propName:string]:any
 }
 
 export interface AxiosResponse<T = any>  {
@@ -132,6 +135,7 @@ export interface CancelTokenSource {
 
 export interface AxiosInstance {
     (config: AxiosRequestConfig): AxiosPromise;
+    upload?:(config: AxiosRequestConfig)=>AxiosPromise
 }
 
 export interface AxiosStatic extends AxiosInstance {

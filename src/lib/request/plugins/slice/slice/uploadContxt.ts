@@ -7,6 +7,8 @@ import Cache from '../../cache/cache';
 
 import slicePlugin from '../index';
 
+import platforms from "../../../../extend/platforms";
+
 import exampleConfig from '../../../config/config';
 
 import {
@@ -115,7 +117,7 @@ export default class UploadContxt implements RequestContxtParams{
                 this.suspend = true;
             }
         } else {
-            return console.error('no running upload');
+            return platforms.error('no running upload');
         }
 
     }
@@ -132,7 +134,7 @@ export default class UploadContxt implements RequestContxtParams{
                 } = this.storageContent || {};
                 return slicePlugin.uploadSlice.triggerUpload(config,requestConfig,fileOption,this);
             } else {
-                return console.error('no running upload');
+                return platforms.error('no running upload');
             }
         }
     }
@@ -157,7 +159,7 @@ export default class UploadContxt implements RequestContxtParams{
     }
 
      // 注入失败
-    addFail(index:number){
+    addFail(index:number):any{
         this.operationSurplus(index);
         if(this.running && this.running[index] !== undefined) {
             this.running[index] = null;
@@ -172,7 +174,7 @@ export default class UploadContxt implements RequestContxtParams{
     }
 
     // 执行操作剩余数量
-    operationSurplus(index:number){
+    operationSurplus(index:number):any{
         let resultIndex = this.surplus.indexOf(index);
         if(resultIndex >= 0) {
             return this.surplus.splice(resultIndex,1);

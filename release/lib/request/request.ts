@@ -337,10 +337,12 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
             }) as InstructionPostOption;
 
             if (config) {
-                return this.$request({
+
+
+                return (this.$request.upload ? this.$request.upload : this.$request)({
                     ...requestConfig,
                     data:function() {
-                        if(requestConfig.data) {
+                        if(requestConfig.toFormData && requestConfig.data) {
                             let formData = new FormData();
                             for(let key in requestConfig.data) {
                                 if(requestConfig.data.hasOwnProperty(key)) {
@@ -349,7 +351,7 @@ export default class Request<warpT=RequestResponse,warpD=AxiosError<DefaultReque
                             }
                             return formData;
                         } else {
-                            return undefined;
+                            return requestConfig.data;
                         }
                     }(),
                     headers:{

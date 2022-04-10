@@ -1,0 +1,15 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "esnext",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "noImplicitAny": false,
+        "noUnusedParameters": true,
+        "sourceMap": false,
+        "baseUrl": "./"
+    },
+    "include": ["src/**/*.ts","src/*.ts"],
+    "exclude": ["node_modules"],
+}

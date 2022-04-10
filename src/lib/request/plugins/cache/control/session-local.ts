@@ -3,6 +3,8 @@ import Memory from "./memory";
 import encryption from '../../../utils/encryption/encryption';
 import {CacheStorageOption, StorageSetOption} from "./control";
 
+import platforms from "../../../../extend/platforms";
+
 import {
     CacheStorageExample
 } from '../type.d';
@@ -71,10 +73,10 @@ export default class SessionLocal extends Memory {
         let useId = this.getId(key,option);
         if (useId) key = useId;
         super.setItem(key, value, option);
-        if (this.timeObject) clearTimeout(this.timeObject[key]);
+        if (this.timeObject) platforms.clearTimeout(this.timeObject[key]);
 
         if (!this.timeObject) this.timeObject = {};
-        this.timeObject[key] = setTimeout( ()=> {
+        this.timeObject[key] = platforms.setTimeout( ()=> {
             this.data[key] && this.example.setItem(key,encryption.encode(JSON.stringify(this.data[key])));
         },0);
     }
@@ -82,10 +84,10 @@ export default class SessionLocal extends Memory {
     private setOptionTime:any;
     // 设置缓存
     updateStorageOption(){
-        clearTimeout(this.setOptionTime);
-        this.setOptionTime = setTimeout(()=>{
+        (this.setOptionTime);
+        this.setOptionTime = platforms.setTimeout(()=>{
 
-            if (this.updateExpire()) return clearTimeout(this.setOptionTime);
+            if (this.updateExpire()) return platforms.clearTimeout(this.setOptionTime);
 
             if (this.storageOption) {
                 return this.example.setItem(this.key,encryption.encode(JSON.stringify(this.storageOption)));

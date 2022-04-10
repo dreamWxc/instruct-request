@@ -9,7 +9,7 @@ const request = Instruction.create<{
     method:'POST'
 },axios);
 
-const verification = VerificationPlugin.register(request);
+VerificationPlugin.register(request);
 
 request.$use({
     extendName: 'mode',
@@ -35,6 +35,7 @@ request.$use({
                 let optionData = this.defaultOption[request.introduces.mode];
 
                 request.requestData = Object.assign({},optionData.requestConfig,request.requestData);
+                // @ts-ignore
                 console.log(request);
                 optionData.mergeData && Object.keys(optionData.mergeData).map((item)=>{
                     if(typeof optionData.mergeData[item] === 'object'){
@@ -61,7 +62,9 @@ VerificationPlugin.register(request);
 
 CachePlugin.register(request,{
     storage:'local',
+    // @ts-ignore
     sessionStorage:window.sessionStorage,
+    // @ts-ignore
     localStorage:window.localStorage
 });
 
@@ -83,5 +86,6 @@ request.$request({
     //     }]
     // }
 }).then((data)=>{
+    // @ts-ignore
     console.log(data.isCache,data);
 });
