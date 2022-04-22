@@ -1,5 +1,5 @@
 
-# instruct-request(指令请求器)
+# instruct-request-axios(指令请求器)
 
 <br />
 
@@ -13,12 +13,12 @@ cache 正常执行时间为 160ms
 - 采用加密解密(ASE,MD5)，针对数据缓存，唯一值sign令牌 采用了加密（此任务耗时最重）
 - 有一些未经优化的判断，因为本插件，粗略的完善，针对校验空字段的时候多出了一些复杂判断多耗时1-3ms
 - 配置项共享过重，插件兼容配置项逻辑（本身可能也不会消耗多少性能）
-  <br />
-  <br />
-  其他注意事项:
-  <br />
+<br />
+<br />
+其他注意事项:
+<br />
 - 为了实现then多次触发自定义了一个模拟Promise简单行为的类导致目前没有去兼容await
-  <br />
+<br />
 
 ## 思想:
 
@@ -56,15 +56,12 @@ cache 正常执行时间为 160ms
 ```
 import instructRequest,{CachePlugin} from 'instruct-request-axios';
 
-// 请求模块，不同平台在 github /platforms 有提供
-import axios from 'axios';
-
 const request = instructRequest.create({
     // 默认的请求方式
     method:'POST',
     // 请求前缀
     baseURL:''
-},axios);
+});
 
 // 注册 cache配置插件
 CachePlugin.register(request,{
@@ -97,9 +94,6 @@ request.$request({
 ```
 import instructRequest,{CachePlugin} from 'instruct-request-axios';
 
-// 请求模块，不同平台在 github /platforms 有提供 或者直接用 axios
-import axios from 'axios';
-
 const request = instructRequest.create<{
     data:any,
     code:number,
@@ -112,7 +106,7 @@ const request = instructRequest.create<{
     method:'POST',
     // 请求前缀
     baseURL:''
-},axios);
+});
 
 // 书写token插件
 request.$use({
