@@ -1,0 +1,28 @@
+{
+  "name": "instruct-request-applet",
+  "version": "0.0.5",
+  "description": "指令请求器",
+  "keywords": [
+    "接口指令",
+    "接口请求",
+    "instruct",
+    "applet-request"
+  ],
+  "repository":"https://github.com/dreamWxc/instruct-request",
+  "bugs": {
+    "url": "https://github.com/dreamWxc/instruct-request/issues"
+  },
+  "miniprogram": "dist",
+  "sideEffects":false,
+  "main": "./lib/platforms/applet/index.js",
+  "module": "./lib/platforms/applet/index.js",
+  "browser": "./dist/index.js",
+  "typings": "./lib/platforms/applet/index.d.ts",
+  "jsdelivr": "dist/index.js",
+  "unpkg": "dist/index.js",
+  "author": "Fighter",
+  "license": "ISC",
+  "devDependencies": {
+    "md5-typescript": "^1.0.5"
+  }
+}

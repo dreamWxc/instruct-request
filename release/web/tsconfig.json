@@ -10,5 +10,5 @@
         "sourceMap": false,
         "baseUrl": "./"
     },
-    "include": ["./applet/*.ts"],
+    "include": ["index.ts","./lib/*.ts","lib/**/*.ts"],
 }

@@ -1,100 +1,32 @@
-import { AxiosInstance, AxiosRequestConfig, AxiosStatic, CancelStatic, CancelTokenStatic,AxiosResponse} from '../../src/lib/request-config';
+import Request  from "../../src/lib/request";
 
-import control from './control';
+import Static from './extend/static/index';
 
-import CancelTokenTarget,{CancelTarget} from './cancelToken';
+import Instructions from '../../src/lib/instructions';
 
+import PromiseExtend from "../../src/lib/extend/ProsmiseExtend";
 
-class AppletRequest implements AxiosStatic{
+import Storage from './extend/storage/index';
 
-    Cancel: CancelStatic = CancelTarget;
-    CancelToken: CancelTokenStatic = CancelTokenTarget;
-    isCancel: (value: any) => boolean = function (value) {
-        return value instanceof CancelTarget;
-    };
-    create(config?: AxiosRequestConfig): AxiosInstance {
-        return AppletRequestInstance(config);
-    }
+/* 插件模块 */
+import CachePlugin from '../../src/lib/request/plugins/cache';
+import VerificationPlugin from '../../src/lib/request/plugins/verification';
+import TipPlugin from '../../src/lib/request/plugins/tip';
+import SlicePlugin from '../../src/lib/request/plugins/slice';
+/* 插件模块 */
 
+export {
+    Instructions,
+    PromiseExtend,
+    CachePlugin,
+    VerificationPlugin,
+    TipPlugin,
+    SlicePlugin
 }
 
-function compatible(config:AxiosRequestConfig={},baseConfig:AxiosRequestConfig) {
-    if (!baseConfig) return config;
-    return {
-        ...baseConfig,
-        ...config,
-    }
-}
+CachePlugin.defaultOption.localStorage = new Storage();
+CachePlugin.defaultOption.sessionStorage = new Storage();
 
-function AppletRequestInstance(_config:AxiosRequestConfig) :AxiosInstance{
+Request.staticRequest = Static;
 
-
-    let applaetInstance:AxiosInstance = function<T>(config:AxiosRequestConfig):Promise<AxiosResponse<T>> {
-        return new Promise(function (resolve, reject) {
-            let resultConfig = compatible(config,_config);
-            // @ts-ignore
-            let cancel = wx.request({
-                ...resultConfig,
-                header:resultConfig.headers,
-                url:control.getURL(resultConfig),
-                success:function (data){
-                    return resolve({
-                        status:data.statusCode,
-                        // @ts-ignore
-                        data:data.data,
-                        headers:data.header,
-                        config:resultConfig,
-                        // @ts-ignore
-                        statusText:data.profile,
-                        ...data
-                    });
-                },
-                fail:reject
-            });
-
-            if (resultConfig.cancelToken) {
-                resultConfig.cancelToken.promise.then(()=>{
-                    // @ts-ignore
-                    cancel && cancel();
-                });
-            }
-        });
-    };
-    applaetInstance.upload =function<T> (config:AxiosRequestConfig):Promise<AxiosResponse<T>> {
-        return new Promise(function (resolve, reject) {
-            let resultConfig = compatible(config,_config);
-            // @ts-ignore
-            let cancel = wx.uploadFile({
-                ...resultConfig,
-                // @ts-ignore
-                formData: resultConfig.formData || resultConfig.data,
-                header:resultConfig.headers,
-                url:control.getURL(resultConfig),
-                success:function (data){
-                    return resolve({
-                        status:data.statusCode,
-                        // @ts-ignore
-                        data:data.data,
-                        // @ts-ignore
-                        headers:data.header,
-                        config:resultConfig,
-                        // @ts-ignore
-                        statusText:data.profile,
-                        ...data
-                    });
-                },
-                fail:reject
-            });
-            if (resultConfig.cancelToken) {
-                resultConfig.cancelToken.promise.then(()=>{
-                    // @ts-ignore
-                    cancel && cancel();
-                });
-            }
-        });
-    }
-
-    return applaetInstance;
-}
-
-export default new AppletRequest();
+export default Request;

@@ -6,7 +6,7 @@ module.exports = {
 
     mode:'production',
 
-    entry:'./src/index.ts',
+    entry:'./platforms/web/index.ts',
 
     cache:{
       type:'filesystem'
@@ -46,14 +46,6 @@ module.exports = {
             }
         ]
     },
-
-    plugins:[
-        new HtmlWebpackPlugin({
-            title:'request 接口请求器',
-            filename: './index.html',
-            template:path.resolve(__dirname,'public/index.html')
-        })
-    ],
 
     devServer:{
         port: 4000,

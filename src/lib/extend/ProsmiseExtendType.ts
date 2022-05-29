@@ -1,6 +1,5 @@
-export interface PromiseExtendCallback<T,D> {
-    (resolve:PromiseExtendCallbackTarget<T>,reject:PromiseExtendCallbackTarget<D>) : any
-}
+export type PromiseExtendCallback<T,D> = (resolve:PromiseExtendCallbackTarget<T>,reject:PromiseExtendCallbackTarget<D>)=> any;
+
 
 interface PromiseExtendCallbackTarget<T> {
     (data?:T):any
